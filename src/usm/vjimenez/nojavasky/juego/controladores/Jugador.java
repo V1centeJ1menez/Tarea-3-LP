@@ -37,13 +37,13 @@ public class Jugador {
 
 
     //*************************************************** METODOS ***************************************************//
-    public void extraccionDeRecursos(int unidadesRecurso, Planeta planetaActual){
+    /*public void extraccionDeRecursos(int unidadesRecurso, Planeta planetaActual){
         float unidadesConsumidas =  (float)(0.5 * unidadesRecurso * (planetaActual.getConsumoEnergia()/100) * (1-eficienciaEnergiaProteccion));
     }
     public void recargarEnergiaProteccion(int sodio) {
         // Método para recargar energía de protección (por implementar)
         float unidadesRecargadas = (float) (0.65* sodio*(1+eficienciaEnergiaProteccion));
-    }
+    }*/
 
 
 }

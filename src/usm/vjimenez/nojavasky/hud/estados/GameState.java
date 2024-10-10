@@ -6,6 +6,8 @@ import usm.vjimenez.nojavasky.juego.controladores.MapaGalactico;
 import usm.vjimenez.nojavasky.hud.*;
 
 import java.util.Scanner;
+import java.io.IOException;
+
 
 public abstract class GameState {
     protected GameStateManager gsm;
@@ -48,8 +50,13 @@ public abstract class GameState {
     }
 
        // Método para pausar y esperar una entrada del usuario
-    public void pausa() {
-        System.out.println("Presiona Enter para continuar...");
-        scanner.nextLine(); // Espera a que el usuario presione Enter
+     public void pausa() {
+        try {
+            System.out.println("Presiona Enter para continuar...");
+            System.in.read(); // Espera a que el usuario presione Enter
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+    
 }

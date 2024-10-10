@@ -16,23 +16,22 @@ public class EstadoMainMenu extends GameState {
     public void mostrarOpciones() {
 
         // Mostrar arte ASCII y opciones
-        System.out.println("✶ *   ✧₊⁺      *       *       *       *    *    *      *   *     *  *    *     *    *    *     *    *   *  *  *");
-        System.out.println("*    *	    *	███╗   ██╗ ██████╗ *    *   ██╗ █████╗ ██╗   ██╗ █████╗ *  *███████╗██╗  ██╗██╗ * ██╗ *   ᯓ★ *");
-        System.out.println("✶   *	*    *	████╗  ██║██╔═══██╗   *   * ██║██╔══██╗██║ * ██║██╔══██╗  * ██╔════╝██║ ██╔╝╚██╗ ██╔╝   *   * ✶");
+        System.out.println("✶ *   ✧₊⁺      *       *       *       *    *    *      *   *     *  *    *     *    *    *     *    *   * ✧* *");
+        System.out.println("*    *	    *	███╗   ██╗ ██████╗ *    *   ██╗ █████╗ ██╗   ██╗ █████╗ *  *███████╗██╗  ██╗██╗ * ██╗ *   *   *");
+        System.out.println("✶   *	*    *	████╗  ██║██╔═══██╗   *   * ██║██╔══██╗██║ * ██║██╔══██╗  * ██╔════╝██║ ██╔╝╚██╗ ██╔╝   ✧₊⁺   ✶");
         System.out.println("*   *	 ✧₊⁺  *	██╔██╗ ██║██║   ██║     *   ██║███████║██║   ██║███████║    ███████╗█████╔╝  ╚████╔╝  *   *   *");
         System.out.println("✶ *    *    *   ██║╚██╗██║██║   ██║ *  ██ * ██║██╔══██║╚██╗ ██╔╝██╔══██║  * ╚════██║██╔═██╗   ╚██╔╝    *    * ✶");
-        System.out.println("*   ☾ 	*     *	██║ ╚████║╚██████╔╝    ╚█████╔╝██║  ██║ ╚████╔╝ ██║  ██║ *  ███████║██║  ██╗   ██║   *    *   *");
-        System.out.println("✶    *	  *   *	╚═╝  ╚═══╝ ╚═════╝ *  * ╚════╝ ╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝  * ╚══════╝╚═╝  ╚═╝   ╚═╝   ✧₊⁺   *  ✶");
-        System.out.println("*  *     *       *       *       *    *    *      *   *     *  ✧₊⁺     *     *    *    *    ✧₊⁺     *   *   * *");
+        System.out.println("*   * 	*     *	██║ ╚████║╚██████╔╝    ╚█████╔╝██║  ██║ ╚████╔╝ ██║  ██║ *  ███████║██║  ██╗   ██║   *    *   *");
+        System.out.println("✶    ✧₊⁺ *   *	╚═╝  ╚═══╝ ╚═════╝ *  * ╚════╝ ╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝  * ╚══════╝╚═╝  ╚═╝   ╚═╝   ✧₊  *    ✶");
+        System.out.println("*  *     *       *       *       *    *    *      *   *     *   *      *     *    *    *    *     *   *   *   *");
         System.out.println("\n");
         // No es necesario crear un nuevo Scanner, usar el de la superclase
-        System.out.println("Bienvenido a No Java Sky!");
         System.out.print("Por favor, ingresa tu nombre: ");
         String nombreJugador = scanner.nextLine();
         jugador.setNombreJugador(nombreJugador); // Guardar el nombre del jugador
 
-        System.out.println("¡Hola " + jugador.getNombreJugador() + "! Listo para empezar el viaje?");
-        System.out.println("[1] Empezar juego");
+        System.out.println(jugador.getNombreJugador() + " ¿Listo para empezar el viaje?");
+        System.out.println("[1] Empezar viaje");
         System.out.println("[2] Cambiar nombre");
         System.out.println("[3] Salir");
 
