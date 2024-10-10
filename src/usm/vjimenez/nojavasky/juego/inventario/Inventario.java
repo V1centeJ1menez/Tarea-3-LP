@@ -16,6 +16,7 @@ public class Inventario {
         this.platino = platino;
     }
 
+    // Getters
     public int getCristalesHidrogeno() {
         return cristalesHidrogeno;
     }
@@ -23,22 +24,31 @@ public class Inventario {
     public int getFloresDeSodio() {
         return floresDeSodio;
     }
-    public int getPlatino() {
-        return platino;
-    }
+
     public int getUranio() {
         return uranio;
     }
+
+    public int getPlatino() {
+        return platino;
+    }
+
+    // Setters
     public void setCristalesHidrogeno(int cristalesHidrogeno) {
         this.cristalesHidrogeno = cristalesHidrogeno;
     }
+
     public void setFloresDeSodio(int floresDeSodio) {
         this.floresDeSodio = floresDeSodio;
     }
+
+    public void setUranio(int uranio) {
+        this.uranio = uranio;
+    }
+
     public void setPlatino(int platino) {
         this.platino = platino;
     }
-    
 
     // Métodos para agregar recursos al inventario
     public void agregarCristalesHidrogeno(int cantidad) {
@@ -50,6 +60,18 @@ public class Inventario {
     public void agregarFloresDeSodio(int cantidad) {
         if (cantidad > 0) {
             this.floresDeSodio += cantidad;
+        }
+    }
+
+    public void agregarUranio(int cantidad) {
+        if (cantidad > 0) {
+            this.uranio += cantidad;
+        }
+    }
+
+    public void agregarPlatino(int cantidad) {
+        if (cantidad > 0) {
+            this.platino += cantidad;
         }
     }
 
@@ -66,18 +88,39 @@ public class Inventario {
         }
     }
 
-    // Métodos para obtener la cantidad de recursos
-    public int obtenerCristalesHidrogeno() {
-        return this.cristalesHidrogeno;
+    public void retirarUranio(int cantidad) {
+        if (cantidad > 0 && this.uranio >= cantidad) {
+            this.uranio -= cantidad;
+        }
     }
 
-    public int obtenerFloresDeSodio() {
-        return this.floresDeSodio;
+    public void retirarPlatino(int cantidad) {
+        if (cantidad > 0 && this.platino >= cantidad) {
+            this.platino -= cantidad;
+        }
     }
 
-    // Método para mostrar el estado del inventario
+    // Método para mostrar el estado del inventario con presentación mejorada
     public void mostrarInventario() {
-        System.out.println("Cristales de Hidrógeno: " + cristalesHidrogeno);
-        System.out.println("Flores de Sodio: " + floresDeSodio);
+        System.out.println("\n=== Inventario del Jugador ===");
+        System.out.println("┌─────────────────────────────┐");
+        
+        // Mostrar Cristales de Hidrógeno siempre
+        System.out.printf("│ %-20s: %4d │\n", "Cristales de Hidrógeno", cristalesHidrogeno);
+        
+        // Mostrar Flores de Sodio siempre
+        System.out.printf("│ %-20s: %4d │\n", "Flores de Sodio", floresDeSodio);
+        
+        // Mostrar Uranio sólo si el jugador tiene más de 0
+        if (uranio > 0) {
+            System.out.printf("│ %-20s: %4d │\n", "Uranio", uranio);
+        }
+        
+        // Mostrar Platino sólo si el jugador tiene más de 0
+        if (platino > 0) {
+            System.out.printf("│ %-20s: %4d │\n", "Platino", platino);
+        }
+
+        System.out.println("└─────────────────────────────┘");
     }
 }

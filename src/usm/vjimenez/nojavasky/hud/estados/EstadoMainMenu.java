@@ -16,6 +16,59 @@ public class EstadoMainMenu extends GameState {
     public void mostrarOpciones() {
 
         // Mostrar arte ASCII y opciones
+        mostrarArteASCII();
+        
+        // No es necesario crear un nuevo Scanner, usar el de la superclase
+        pedirNombreJugador();
+
+        boolean jugando = true;
+        while (jugando) {
+            System.out.println(jugador.getNombreJugador() + " ¿Listo para empezar el viaje?");
+            System.out.println("[1] Empezar viaje");
+            System.out.println("[2] Cambiar nombre");
+            System.out.println("[3] Salir");
+
+            System.out.print("Selecciona una opción: ");
+            int opcion = obtenerOpcion(scanner); // Método para obtener una opción válida
+
+            switch (opcion) {
+                case 1:
+                    // Cambiar al estado de órbita
+                    Nave nave = new Nave();  // Inicializar la nave
+                    MapaGalactico mapaGalactico = new MapaGalactico(); // Inicializar el mapa
+                    mapaGalactico.generadorPlaneta(); // Generar el primer planeta
+                    cambiarEstado(new EstadoOrbita(gsm, jugador, nave, mapaGalactico));
+                    jugando = false; // Salir del bucle después de cambiar de estado
+                    break;
+                case 2:
+                    limpiarPantalla();
+                    mostrarArteASCII();
+                    pedirNombreJugador(); // Pedir el nombre de nuevo sin reiniciar todo
+                    break;
+
+                case 3:
+                    System.out.println("Saliendo del juego...");
+                    gsm.cerrarScanner(); // Asegúrate de cerrar el scanner al salir
+                    System.exit(0);
+                    break;
+
+                default:
+                    limpiarPantalla();
+                    System.out.println("Opción no válida, intentemos de nuevo.\n");
+                    break;
+            }
+        }
+    }
+
+    // Método para pedir y establecer el nombre del jugador
+    private void pedirNombreJugador() {
+        System.out.print("Por favor, ingresa tu nombre: ");
+        String nombreJugador = scanner.nextLine();
+        jugador.setNombreJugador(nombreJugador); // Guardar el nombre del jugador
+    }
+
+    // Método para mostrar arte ASCII
+    private void mostrarArteASCII() {
         System.out.println("✶ *   ✧₊⁺      *       *       *       *    *    *      *   *     *  *    *     *    *    *     *    *   * ✧* *");
         System.out.println("*    *	    *	███╗   ██╗ ██████╗ *    *   ██╗ █████╗ ██╗   ██╗ █████╗ *  *███████╗██╗  ██╗██╗ * ██╗ *   *   *");
         System.out.println("✶   *	*    *	████╗  ██║██╔═══██╗   *   * ██║██╔══██╗██║ * ██║██╔══██╗  * ██╔════╝██║ ██╔╝╚██╗ ██╔╝   ✧₊⁺   ✶");
@@ -25,44 +78,6 @@ public class EstadoMainMenu extends GameState {
         System.out.println("✶    ✧₊⁺ *   *	╚═╝  ╚═══╝ ╚═════╝ *  * ╚════╝ ╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝  * ╚══════╝╚═╝  ╚═╝   ╚═╝   ✧₊  *    ✶");
         System.out.println("*  *     *       *       *       *    *    *      *   *     *   *      *     *    *    *    *     *   *   *   *");
         System.out.println("\n");
-        // No es necesario crear un nuevo Scanner, usar el de la superclase
-        System.out.print("Por favor, ingresa tu nombre: ");
-        String nombreJugador = scanner.nextLine();
-        jugador.setNombreJugador(nombreJugador); // Guardar el nombre del jugador
-
-        System.out.println(jugador.getNombreJugador() + " ¿Listo para empezar el viaje?");
-        System.out.println("[1] Empezar viaje");
-        System.out.println("[2] Cambiar nombre");
-        System.out.println("[3] Salir");
-
-        System.out.print("Selecciona una opción: ");
-        int opcion = obtenerOpcion(scanner); // Método para obtener una opción válida
-
-        switch (opcion) {
-            case 1:
-                // Cambiar al estado de órbita
-                Nave nave = new Nave();  // Inicializar la nave
-                MapaGalactico mapaGalactico = new MapaGalactico(); // Inicializar el mapa
-                mapaGalactico.generadorPlaneta(); // Generar el primer planeta
-                cambiarEstado(new EstadoOrbita(gsm, jugador, nave, mapaGalactico));
-                break;
-            case 2:
-                limpiarPantalla();
-                mostrarOpciones(); // Repetir opciones
-                break;
-
-            case 3:
-                System.out.println("Saliendo del juego...");
-                gsm.cerrarScanner(); // Asegúrate de cerrar el scanner al salir
-                System.exit(0);
-                break;
-
-            default:
-                limpiarPantalla();
-                System.out.println("Ingresaste una opción no válida, intentemoslo de nuevo.\n");
-                mostrarOpciones(); // Repetir opciones
-                break;
-        }
     }
 
     // Método para obtener una opción válida del usuario

@@ -1,6 +1,8 @@
 package usm.vjimenez.nojavasky.juego.controladores;
 
-import usm.vjimenez.nojavasky.juego.entidades.planetas.Planeta;
+import usm.vjimenez.nojavasky.juego.inventario.Inventario;
+
+//import usm.vjimenez.nojavasky.juego.entidades.planetas.Planeta;
 
 public class Jugador {
 
@@ -9,6 +11,14 @@ public class Jugador {
     private String nombreJugador;
     private float unidadesEnergiaProteccion = 100; // capcidad inicial de 100.0 unidades de energia
     private float eficienciaEnergiaProteccion = 0; // eficiencia inicial de 0.0%
+    private Inventario inventario;
+
+
+    // Constructor
+    public Jugador() {
+        this.inventario = new Inventario(0, 0, 0, 0); // Inicializamos el inventario vacío
+    }
+
 
     //*************************************************** GETTERS ***************************************************//
 
@@ -23,6 +33,10 @@ public class Jugador {
         return nombreJugador;
     }
 
+    public Inventario getInventario() {
+        return inventario;
+    }
+
     //*************************************************** SETTERS ***************************************************//
     public void setNombreJugador(String nombreJugador) {
         this.nombreJugador = nombreJugador;
@@ -35,6 +49,9 @@ public class Jugador {
         this.unidadesEnergiaProteccion = unidadesEnergiaProteccion;
     }
 
+    public void setInventario(Inventario inventario) {
+        this.inventario = inventario;
+    }
 
     //*************************************************** METODOS ***************************************************//
     /*public void extraccionDeRecursos(int unidadesRecurso, Planeta planetaActual){

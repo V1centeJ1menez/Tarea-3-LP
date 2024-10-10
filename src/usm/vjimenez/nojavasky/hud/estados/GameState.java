@@ -50,6 +50,14 @@ public abstract class GameState {
     }
 
        // Método para pausar y esperar una entrada del usuario
+    public void pausaAnimacion(int milisegundos) {
+    try {
+        Thread.sleep(milisegundos);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+    }
+    
      public void pausa() {
         try {
             System.out.println("Presiona Enter para continuar...");
