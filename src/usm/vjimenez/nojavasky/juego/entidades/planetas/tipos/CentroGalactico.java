@@ -29,3 +29,6 @@ public class CentroGalactico extends Planeta {
         return false;
     }
 }
+
+
+        

@@ -164,6 +164,4 @@ public class MapaGalactico {
     private CentroGalactico crearCentroGalactico() {
         return new CentroGalactico(); // Crear un CentroGalactico sin parámetros
     }
-
-    //***********************************************************************************************************//
 }

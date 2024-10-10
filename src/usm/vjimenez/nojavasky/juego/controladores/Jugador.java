@@ -4,17 +4,28 @@ import usm.vjimenez.nojavasky.juego.entidades.planetas.Planeta;
 
 public class Jugador {
 
-    // Atributos
+    //*************************************************** ATRIBUTOS ***************************************************//
+  
+    private String nombreJugador;
     private float unidadesEnergiaProteccion = 100; // capcidad inicial de 100.0 unidades de energia
     private float eficienciaEnergiaProteccion = 0; // eficiencia inicial de 0.0%
 
-    // GETTERS - SETTERS
+    //*************************************************** GETTERS ***************************************************//
 
     public float getEficienciaEnergiaProteccion() {
         return eficienciaEnergiaProteccion;
     }
     public float getUnidadesEnergiaProteccion() {
         return unidadesEnergiaProteccion;
+    }
+
+    public String getNombreJugador() {
+        return nombreJugador;
+    }
+
+    //*************************************************** SETTERS ***************************************************//
+    public void setNombreJugador(String nombreJugador) {
+        this.nombreJugador = nombreJugador;
     }
 
     public void setEficienciaEnergiaProteccion(float eficienciaEnergiaProteccion) {
@@ -25,7 +36,7 @@ public class Jugador {
     }
 
 
-    // METODOS
+    //*************************************************** METODOS ***************************************************//
     public void extraccionDeRecursos(int unidadesRecurso, Planeta planetaActual){
         float unidadesConsumidas =  (float)(0.5 * unidadesRecurso * (planetaActual.getConsumoEnergia()/100) * (1-eficienciaEnergiaProteccion));
     }
