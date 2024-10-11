@@ -17,6 +17,11 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
         this.profundidad = profundidad;
         this.consumoEnergia = consumoEnergia;
         this.tipo = "Oceanico";
+        this.descripcion = "Estos planetas son un gran océano, rico en vida acuática. Pero todos los recursos de "
+                     + "valor están en las profundidades, si decides aventurarte bajo el agua, deberas considerar "
+                     + "energía para poder respirar. Son ricos en Flores de Sodio y puede haber "
+                     + "asentamientos de especies alienígenas que están dispuestos a intercambiar recursos "
+                     + "por mejoras a tu exotraje o para tu nave.";
     }
 
     public int getProfundidad() {

@@ -17,6 +17,11 @@ public class Radioactivo extends Planeta {
         this.uranio = uranio;
         this.consumoEnergia = consumoEnergia;
         this.tipo = "Radioactivo";
+        this.descripcion =  "Estos planetas están llenos de vida muy exótica. Pero la atmósfera es muy densa en "
+        + "componentes radiactivos incompatibles con tu sistema, por lo que el traje consume "
+        + "mucha energía para evitar los efectos letales. Esta radiación proviene de los grandes "
+        + "yacimientos ricos en Uranio, un elemento muy cotizado por los asentamientos de otros "
+        + "planetas, se puede intercambiar este elemento por mejoras en los asentamientos.";
     }
 
     public int getRadiacion() {

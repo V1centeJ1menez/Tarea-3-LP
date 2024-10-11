@@ -14,7 +14,8 @@ public class Jugador {
     private Inventario inventario;
 
 
-    // Constructor
+    //*************************************************** CONSTRUCTOR ***************************************************//
+  
     public Jugador() {
         this.inventario = new Inventario(0, 0, 0, 0); // Inicializamos el inventario vacío
     }

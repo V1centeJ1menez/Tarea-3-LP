@@ -2,17 +2,19 @@ package usm.vjimenez.nojavasky.juego.entidades.planetas;
 
 import usm.vjimenez.nojavasky.juego.controladores.Jugador;
 
+
 public abstract class Planeta {
 
-    // Atributos
+    //*************************************************** ATRIBUTOS ***************************************************//
     protected int radio;
     protected int cristalesHidrogeno;
     protected int floresDeSodio;
     protected float consumoEnergia;
     protected String tipo;
+    protected String descripcion;
 
 
-    // GETTERS - SETTERS
+    //*************************************************** GETTERS ***************************************************//
     public float getConsumoEnergia() {
         return consumoEnergia;
     }public int getCristalesHidrogeno() {
@@ -24,8 +26,11 @@ public abstract class Planeta {
     }public String getTipo() {
         return tipo;
     }
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-
+    //*************************************************** SETTERS ***************************************************//
     public void setConsumoEnergia(float consumoEnergia) {
         this.consumoEnergia = consumoEnergia;
     }public void setCristalesHidrogeno(int cristalesHidrogeno) {
@@ -37,10 +42,25 @@ public abstract class Planeta {
     }public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-    public abstract boolean visitar(Jugador jugador);
+
+    //*************************************************** METODOS ***************************************************//
+    // Método que se llama cuando el jugador visita el planeta
+    public boolean visitar(Jugador jugador) {
+        
+        if (jugador.getUnidadesEnergiaProteccion() == 0) {
+            return false;
+        }
+        return true;
+    }
     public abstract int extraerRecursos(int tipo);
-    public abstract boolean salir();
+    // Método para salir del planeta
+    public boolean salir() {
+        return true;
+    }
     
 }
 

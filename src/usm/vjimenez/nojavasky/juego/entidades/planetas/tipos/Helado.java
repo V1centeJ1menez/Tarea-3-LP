@@ -17,6 +17,10 @@ public class Helado extends Planeta implements tieneAsentamientos {
         this.temperatura = temperatura;
         this.consumoEnergia = consumoEnergia;
         this.tipo = "Helado";
+        this.descripcion = "Estos planetas son una tundra congelada, donde uno siempre verá nieve y hielo. "
+                     + "Son muy ricos en Cristales de Hidrógeno y puede haber asentamientos de especies "
+                     + "alienígenas que están dispuestas a intercambiar recursos por mejoras para tu exotraje "
+                     + "o para tu nave.";
     }
 
     public int getTemperatura() {

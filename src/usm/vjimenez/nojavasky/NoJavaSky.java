@@ -8,3 +8,4 @@ public class NoJavaSky {
         gameStateManager.actualizar(); // Muestra el menú principal y permite al usuario interactuar
     }
 }
+ 
