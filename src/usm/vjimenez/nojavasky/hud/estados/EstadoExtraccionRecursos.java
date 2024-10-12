@@ -58,14 +58,16 @@ public class EstadoExtraccionRecursos extends GameState {
 
                     // Extracción
                     cantidadExtraida = planetaActual.extraerRecursos(1);
-                    System.out.println(cantidadExtraida);
+                    if (cantidadExtraida == -1) {
+                        System.out.println("Extracción fallida.");
+                    }else{
 
-                    // Gasto de energia del traje
-                    jugador.consumirEnergia(cantidadExtraida, consumoEnergia);
-
-                    // Agregar al inventario lo consumido
-                    inventario.agregarCristalesHidrogeno(cantidadExtraida);  // Agregar al inventario
-                    System.out.println("Has extraído " + cantidadExtraida + " Cristales de Hidrógeno.");
+                        // Gasto de energia del traje
+                        jugador.consumirEnergia(cantidadExtraida, consumoEnergia);
+                        // Agregar al inventario lo consumido
+                        inventario.agregarCristalesHidrogeno(cantidadExtraida);  // Agregar al inventario
+                        System.out.println("Has extraído " + cantidadExtraida + " Cristales de Hidrógeno.");
+                    }
                     pausa();
                     break;
     
@@ -75,9 +77,14 @@ public class EstadoExtraccionRecursos extends GameState {
                     mostrarDescenso();
                     mostrarInterface();
                     cantidadExtraida = planetaActual.extraerRecursos(2);
-                    jugador.consumirEnergia(cantidadExtraida, consumoEnergia);
-                    inventario.agregarFloresDeSodio(cantidadExtraida);  // Agregar al inventario
-                    System.out.println("Has extraído " + cantidadExtraida + " Flores de Sodio.");
+                    if (cantidadExtraida == -1) {
+                        System.out.println("Extracción fallida.");
+                    }else{
+                        jugador.consumirEnergia(cantidadExtraida, consumoEnergia);
+                        inventario.agregarFloresDeSodio(cantidadExtraida);  // Agregar al inventario
+                        System.out.println("Has extraído " + cantidadExtraida + " Flores de Sodio.");
+                        
+                    }
                     pausa();
                     break;
     
@@ -88,9 +95,13 @@ public class EstadoExtraccionRecursos extends GameState {
                     mostrarInterface();
                     if (planetaActual instanceof Radioactivo) {
                         cantidadExtraida = planetaActual.extraerRecursos(3);
-                        jugador.consumirEnergia(cantidadExtraida, consumoEnergia);
-                        inventario.agregarUranio(cantidadExtraida);  // Agregar al inventario
-                        System.out.println("Has extraído " + cantidadExtraida + " unidades de Uranio.");
+                        if (cantidadExtraida == -1) {
+                            System.out.println("Extracción fallida.");
+                        } else{
+                            jugador.consumirEnergia(cantidadExtraida, consumoEnergia);
+                            inventario.agregarUranio(cantidadExtraida);  // Agregar al inventario
+                            System.out.println("Has extraído " + cantidadExtraida + " unidades de Uranio.");
+                        }
                     } else {
                         System.out.println("Opción no válida.");
                     }
@@ -104,10 +115,14 @@ public class EstadoExtraccionRecursos extends GameState {
                     mostrarInterface();
                     if (planetaActual instanceof Volcanico) {
                         cantidadExtraida = planetaActual.extraerRecursos(4);
-                        System.out.println(cantidadExtraida);
-                        jugador.consumirEnergia(cantidadExtraida, consumoEnergia);
-                        inventario.agregarPlatino(cantidadExtraida);  // Agregar al inventario
-                        System.out.println("Has extraído " + cantidadExtraida + " unidades de Platino.");
+                        if (cantidadExtraida == -1) {
+                            System.out.println("Extracción fallida.");
+                        }else{
+    
+                            jugador.consumirEnergia(cantidadExtraida, consumoEnergia);
+                            inventario.agregarPlatino(cantidadExtraida);  // Agregar al inventario
+                            System.out.println("Has extraído " + cantidadExtraida + " unidades de Platino.");
+                        }
                     } else {
                         System.out.println("Opción no válida.");
                     }

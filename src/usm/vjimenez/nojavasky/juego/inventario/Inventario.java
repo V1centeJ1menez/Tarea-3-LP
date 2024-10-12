@@ -141,8 +141,8 @@ public class Inventario {
 
             // Mostrar opciones adicionales para recargar y volver
             System.out.println("\nOpciones:");
-            System.out.println("[1] Recargar energía de exotraje");
-            System.out.println("[2] Recargar combustible de nave");
+            System.out.println("[1] Recargar energía de exotraje (Flores de Sodio)");
+            System.out.println("[2] Recargar combustible de nave (Cristales de Hidrogeno)");
             System.out.println("[3] Volver");
 
             int opcion = scanner.nextInt();

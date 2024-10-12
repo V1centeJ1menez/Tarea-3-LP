@@ -12,7 +12,5 @@ public class EstadoVisitaDeAsentamientos extends GameState {
     }
     @Override
     public void mostrarOpciones() {
-        // TODO Auto-generated method stub
-        
     }
 }

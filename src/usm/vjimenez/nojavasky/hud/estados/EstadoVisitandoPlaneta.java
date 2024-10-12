@@ -84,20 +84,14 @@ public class EstadoVisitandoPlaneta extends GameState {
     private void animarSalidaDelPlaneta() {
         String[] mensajes = {
             "Empacando suministros...",
-            "Asegurando equipo de exploración...",
-            "Revisando sistemas del exotraje...",
             "Encendiendo motores de la nave...",
-            "Verificando niveles de combustible...",
-            "Realizando chequeo de sistemas de navegación...",
-            "Cerrando compuertas de la nave...",
-            "Ajustando cinturones de seguridad...",
-            "Activando propulsores...",
-            "Listo para el despegue..."
+            "Despegue...",
+            "Ya en orbira, listo para saltar por el espacio..."
         };
 
         for (String mensaje : mensajes) {
             System.out.println(mensaje);
-            pausaAnimacion(400); // Pausa por 1 segundo entre mensajes
+            pausaAnimacion(300); // Pausa por 1 segundo entre mensajes
         }
         mostrarDescenso(); // Mostrar el descenso después del efecto del monitor
     }
@@ -106,14 +100,13 @@ public class EstadoVisitandoPlaneta extends GameState {
         String[] mensajes = {
             "Bajando al planeta...",
             "Analizando datos...",
-            "Cargando recursos...",
             "Preparando exotraje...",
             "Listo para la exploración..."
         };
 
         for (String mensaje : mensajes) {
             System.out.println(mensaje);
-            pausaAnimacion(500); // Pausa por 1 segundo entre mensajes
+            pausaAnimacion(300); // Pausa por 1 segundo entre mensajes
         }
         mostrarDescenso(); // Mostrar el descenso después del efecto del monitor
     }
@@ -132,7 +125,7 @@ public class EstadoVisitandoPlaneta extends GameState {
         for (String mensaje : encendido) {
             limpiarPantalla(); // Limpia la pantalla para un mejor efecto visual
             System.out.println(mensaje);
-            pausaAnimacion(300); // Pausa por 500 ms entre cada línea
+            pausaAnimacion(200); // Pausa por 500 ms entre cada línea
         }
         limpiarPantalla();
     }
