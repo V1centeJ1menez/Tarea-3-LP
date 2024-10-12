@@ -6,6 +6,7 @@ public class Nave {
 
     //*************************************************** ATRIBUTOS ***************************************************//
     private float unidadesCombustible = 100; // Capacidad inicial de 100.0 unidades de energía
+    private float capcidadTotalCombustible = 100;
     private float eficienciaPropulsor = 0; // Eficiencia inicial de 0.0%
     
 
@@ -18,6 +19,9 @@ public class Nave {
         return eficienciaPropulsor;
     }
 
+    public float getCapcidadTotalCombustible() {
+        return capcidadTotalCombustible;
+    }
     //*************************************************** SETTERS ***************************************************//
     public void setEficienciaPropulsor(float eficienciaPropulsor) {
         this.eficienciaPropulsor = eficienciaPropulsor;
@@ -25,6 +29,9 @@ public class Nave {
 
     public void setUnidadesCombustible(float unidadesCombustible) {
         this.unidadesCombustible = unidadesCombustible;
+    }
+    public void setCapcidadTotalCombustible(float capcidadTotalCombustible) {
+        this.capcidadTotalCombustible = capcidadTotalCombustible;
     }
 
     //*************************************************** METODOS ***************************************************//
@@ -46,6 +53,11 @@ public class Nave {
         if (unidadesCombustible >= unidadesConsumidas) {
             // Descontar el combustible consumido
             this.unidadesCombustible -= unidadesConsumidas;
+
+            if (unidadesCombustible < 0) {
+                unidadesCombustible = 0;
+                
+            }
 
             // Expandir la lista si es necesario, llenando con "no visitados" (null)
             while (nuevaPosicion >= MG.getPlanetas().size()) {
@@ -87,8 +99,19 @@ public class Nave {
     
 
     public void recargarPropulsores(int hidrogeno) {
-        // Método para recargar los propulsores (por implementar)
+        // Calcular las unidades de combustible recargadas basadas en el hidrógeno y la eficiencia del propulsor
         float unidadesRecargadas = (float)(0.6 * hidrogeno * (1 + eficienciaPropulsor));
+        
+        // Aumentar las unidades de combustible en la nave
         this.unidadesCombustible += unidadesRecargadas;
+
+        // Asegurarse de que la energía no exceda la capacidad total
+        if (unidadesCombustible > capcidadTotalCombustible) {
+            unidadesCombustible = capcidadTotalCombustible;
+        }
+    
+        System.out.println("Has recargado " + unidadesRecargadas + " unidades de combustible.");
+        System.out.println("Combustible actual en la nave: " + unidadesCombustible + " unidades.");
     }
+    
 }

@@ -24,14 +24,15 @@ public class CentroGalactico extends Planeta {
     @Override
     public int extraerRecursos(int tipo) {
         // Implementación por definir
-        return 0;
+        return super.extraerRecursos(tipo);
     }
 
     @Override
     public boolean salir() {
         // Implementación por definir
-        return false;
+        return true;
     }
+
 }
 
 

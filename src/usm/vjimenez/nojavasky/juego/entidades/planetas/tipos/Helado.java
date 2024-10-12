@@ -40,19 +40,25 @@ public class Helado extends Planeta implements tieneAsentamientos {
     @Override
     public int extraerRecursos(int tipo) {
         // Implementación por definir
-        return 0;
+        return super.extraerRecursos(tipo);
     }
 
     @Override
     public boolean salir() {
         // Implementación por definir
-        return false;
+        return true;
     }
 
+    @Override
+    public boolean verificartieneAsentamientos() {
+        return true; // Este planeta tiene asentamientos
+    }
     // Método de la interfaz tieneAsentamientos
     @Override
     public void visitarAsentamientos(Jugador jugador) {
         // Implementación por definir
     }
+
+
 }
 

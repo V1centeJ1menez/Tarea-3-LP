@@ -16,18 +16,22 @@ public class Volcanico extends Planeta {
         this.floresDeSodio = floresDeSodio;
         this.temperatura = temperatura;
         this.tipo = "Volcanico";
+        this.platino = platino;
+        this.consumoEnergia = consumoEnergia;
         this.descripcion =  "Este planeta de lejos puede parecer un sol, si no fuese por la nube de cenizas que "
                      + "cubre toda la superficie. Los grandes volcanes producen un aumento en la temperatura "
                      + "de la superficie que es incapaz de albergar vida, por lo que el exotraje lucha por tu "
                      + "supervivencia. La lava de estos planetas al solidificarse es rica en Platino, un "
                      + "elemento muy cotizado por los asentamientos de otros planetas, se puede intercambiar "
                      + "este elemento por mejoras en los asentamientos.";
+
     }
 
 
     public int getPlatino() {
         return platino;
     }
+
     public int getTemperatura() {
         return temperatura;
     }
@@ -48,13 +52,18 @@ public class Volcanico extends Planeta {
 
     @Override
     public int extraerRecursos(int tipo) {
-        // Implementación por definir
-        return 0;
+        if (tipo == 4) { // Platino
+            System.out.println("¡Extrayendo Plantino del planeta volcanico!");
+            return super.extraerRecursos(tipo); // Delegamos la lógica de extracción
+        }
+        return super.extraerRecursos(tipo); // Si no es un recurso válido, no se extrae nada
     }
 
     @Override
     public boolean salir() {
         // Implementación por definir
-        return false;
+        return true;
     }
+
+ 
 }

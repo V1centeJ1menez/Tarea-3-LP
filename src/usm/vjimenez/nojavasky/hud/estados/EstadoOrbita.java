@@ -3,7 +3,6 @@ package usm.vjimenez.nojavasky.hud.estados;
 import usm.vjimenez.nojavasky.hud.GameStateManager;
 import usm.vjimenez.nojavasky.juego.controladores.Jugador;
 import usm.vjimenez.nojavasky.juego.controladores.Nave;
-import usm.vjimenez.nojavasky.juego.entidades.planetas.Planeta;
 import usm.vjimenez.nojavasky.juego.controladores.MapaGalactico;
 import usm.vjimenez.nojavasky.utilidad.RandomNumberGenerator;
 
@@ -40,8 +39,47 @@ public class EstadoOrbita extends GameState {
             switch (opcion) {
                 case 1:
                     efectoCerrarOjos(); // Llama al efecto antes de bajar al planeta
-                    mostrarMenuPlaneta();
-                
+                    boolean enMenuPlaneta = true;
+
+                    while (enMenuPlaneta) {
+                        limpiarPantalla();
+                        resetCabecera();
+                        System.out.println("Submenú: Exploración del Planeta");
+                        System.out.println("[1] Mostrar información del planeta");
+                        System.out.println("[2] Bajar al planeta");
+                        System.out.println("[3] Volver");
+
+                        int opcionPlaneta = scanner.nextInt();
+
+                        switch (opcionPlaneta) {
+                            case 1:
+                                // Mostrar la información del planeta
+                                limpiarPantalla();
+                                resetCabecera();
+                                mostrarBajarPlaneta();
+                                pausa();
+                                break;
+
+                            case 2:
+                                // Bajar al planeta
+                                limpiarPantalla();
+                                cambiarEstado(new EstadoVisitandoPlaneta(gsm, jugador, nave, mapa,true));
+                                enMenuPlaneta = false; // Salir del submenú después de bajar al planeta
+                                jugando = false;
+                                break;
+
+                            case 3:
+                                // Volver al menú principal
+                                enMenuPlaneta = false; // Salir del submenú y volver al menú principal
+                                break;
+
+                            default:
+                                System.out.println("Opción no válida, por favor intente de nuevo.");
+                                pausa(); // Pausa antes de continuar
+                                break;
+                        }
+                    }
+                            
                     break;
                 
                 case 2:
@@ -62,7 +100,6 @@ public class EstadoOrbita extends GameState {
                     limpiarPantalla();
                     resetCabecera();
                     mostrarInventario();
-                    pausa();
                     break;
             
                 case 5:
@@ -71,6 +108,7 @@ public class EstadoOrbita extends GameState {
                     mostrarCabeceraMuerto();
                     System.out.println("--------------------------------------------------------");
                     System.out.println("Saliste de la nave");
+                    gsm.cerrarScanner(); 
                     jugando = false;
                     break;
             
@@ -84,64 +122,6 @@ public class EstadoOrbita extends GameState {
     }
 
     
-        
-    // Nuevo método para mostrar el menú de opciones antes de bajar al planeta
-    private void mostrarMenuPlaneta() {
-        boolean enMenuPlaneta = true;
-
-        while (enMenuPlaneta) {
-            limpiarPantalla();
-            resetCabecera();
-            System.out.println("Submenú: Exploración del Planeta");
-            System.out.println("[1] Mostrar información del planeta");
-            System.out.println("[2] Bajar al planeta");
-            System.out.println("[3] Volver");
-
-            int opcionPlaneta = scanner.nextInt();
-
-            switch (opcionPlaneta) {
-                case 1:
-                    // Mostrar la información del planeta
-                    limpiarPantalla();
-                    resetCabecera();
-                    mostrarBajarPlaneta();
-                    pausa();
-                    break;
-
-                case 2:
-                    // Bajar al planeta
-                    limpiarPantalla();
-                    cambiarAEstadoVisitandoPlaneta(); 
-                    enMenuPlaneta = false; // Salir del submenú después de bajar al planeta
-                    break;
-
-                case 3:
-                    // Volver al menú principal
-                    enMenuPlaneta = false; // Salir del submenú y volver al menú principal
-                    break;
-
-                default:
-                    System.out.println("Opción no válida, por favor intente de nuevo.");
-                    pausa(); // Pausa antes de continuar
-                    break;
-            }
-        }
-    }
-
-
-    // Método que cambia al estado de visitar el planeta
-    private void cambiarAEstadoVisitandoPlaneta() {
-        Planeta planetaActual = mapa.getPlanetaActual();
-        if (planetaActual != null) {
-            if(planetaActual.visitar(jugador)){
-                cambiarEstado(new EstadoVisitandoPlaneta(gsm, jugador, nave, mapa));
-                
-            }; // Aquí se activa EstadoVisitandoPlaneta)
-        } else {
-            System.out.println("No hay un planeta actual seleccionado.");
-        }
-    }
-
 
     // Método para mostrar la información del planeta
     private void mostrarBajarPlaneta() {
@@ -198,7 +178,7 @@ public class EstadoOrbita extends GameState {
     
     // Método para mostrar el inventario del jugador
     private void mostrarInventario() {
-        jugador.getInventario().mostrarInventario();
+        jugador.getInventario().mostrarInventario(jugador, nave);
     }
 
 

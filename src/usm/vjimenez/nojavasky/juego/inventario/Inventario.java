@@ -1,5 +1,10 @@
 package usm.vjimenez.nojavasky.juego.inventario;
 
+import usm.vjimenez.nojavasky.hud.estados.GameState;
+import usm.vjimenez.nojavasky.juego.controladores.Jugador;
+import usm.vjimenez.nojavasky.juego.controladores.Nave;
+import java.util.Scanner;
+
 public class Inventario {
 
     // Atributos
@@ -7,6 +12,9 @@ public class Inventario {
     private int floresDeSodio;
     private int uranio;
     private int platino;
+
+    protected Scanner scanner = new Scanner(System.in);
+
 
     // Constructor
     public Inventario(int cristalesHidrogeno, int floresDeSodio, int uranio, int platino) {
@@ -101,26 +109,107 @@ public class Inventario {
     }
 
     // Método para mostrar el estado del inventario con presentación mejorada
-    public void mostrarInventario() {
-        System.out.println("\n=== Inventario del Jugador ===");
-        System.out.println("┌─────────────────────────────┐");
-        
-        // Mostrar Cristales de Hidrógeno siempre
-        System.out.printf("│ %-20s: %4d │\n", "Cristales de Hidrógeno", cristalesHidrogeno);
-        
-        // Mostrar Flores de Sodio siempre
-        System.out.printf("│ %-20s: %4d │\n", "Flores de Sodio", floresDeSodio);
-        
-        // Mostrar Uranio sólo si el jugador tiene más de 0
-        if (uranio > 0) {
-            System.out.printf("│ %-20s: %4d │\n", "Uranio", uranio);
-        }
-        
-        // Mostrar Platino sólo si el jugador tiene más de 0
-        if (platino > 0) {
-            System.out.printf("│ %-20s: %4d │\n", "Platino", platino);
-        }
+    public void mostrarInventario(Jugador jugador, Nave nave) {
+        boolean enMenuInventario = true;
 
-        System.out.println("└─────────────────────────────┘");
+        while (enMenuInventario) {
+            GameState.limpiarPantalla();
+            System.out.println("\n=== Inventario del Jugador ===");
+            System.out.println("┌─────────────────────────────┐");
+            
+            // Mostrar Cristales de Hidrógeno siempre
+            System.out.printf("│ %-20s: %4d │\n", "Cristales de Hidrógeno", cristalesHidrogeno);
+            
+            // Mostrar Flores de Sodio siempre
+            System.out.printf("│ %-20s: %4d │\n", "Flores de Sodio", floresDeSodio);
+            
+            // Mostrar Uranio sólo si el jugador tiene más de 0
+            if (uranio > 0) {
+                System.out.printf("│ %-20s: %4d │\n", "Uranio", uranio);
+            }
+            
+            // Mostrar Platino sólo si el jugador tiene más de 0
+            if (platino > 0) {
+                System.out.printf("│ %-20s: %4d │\n", "Platino", platino);
+            }
+
+            System.out.println("└─────────────────────────────┘");
+            
+            // Mostrar combustible y energia actual
+            System.out.println("Energia actual de traje: " + jugador.getUnidadesEnergiaProteccion());
+            System.out.println("Combustible actual de nave: " + nave.getUnidadesCombustible());
+
+            // Mostrar opciones adicionales para recargar y volver
+            System.out.println("\nOpciones:");
+            System.out.println("[1] Recargar energía de exotraje");
+            System.out.println("[2] Recargar combustible de nave");
+            System.out.println("[3] Volver");
+
+            int opcion = scanner.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    // Recargar energía del exotraje
+                    recargarEnergiaExotraje(jugador);
+                    GameState.pausa();
+                    break;
+
+                case 2:
+                    // Recargar combustible de la nave
+                    recargarCombustibleNave(nave);
+                    GameState.pausa();
+                    break;
+
+                case 3:
+                    // Volver al menú anterior
+                    enMenuInventario = false;
+                    break;
+
+                default:
+                    System.out.println("Opción no válida. Intente de nuevo.");
+                    break;
+            }
+        }
     }
+    // Método para recargar energía del exotraje usando sodio
+    private void recargarEnergiaExotraje(Jugador jugador) {
+        if (floresDeSodio > 0) {
+            System.out.print("¿Cuántas flores de sodio desea utilizar para recargar el exotraje? ");
+            int cantidad = scanner.nextInt();
+
+            if (cantidad > 0 && cantidad <= floresDeSodio) {
+                // Realizar la recarga en la clase Jugador
+                jugador.recargarEnergiaProteccion(cantidad);
+                retirarFloresDeSodio(cantidad); // Restar las flores del inventario
+                System.out.println("Has recargado la energía del exotraje.");
+            } else {
+                System.out.println("Cantidad no válida.");
+            }
+        } else {
+            System.out.println("No tienes suficiente flores de sodio para recargar el exotraje.");
+        }
+    }
+
+    // Método para recargar combustible de la nave usando hidrógeno
+    private void recargarCombustibleNave(Nave nave) {
+        if (cristalesHidrogeno > 0) {
+            System.out.print("¿Cuántos cristales de hidrógeno desea utilizar para recargar la nave? ");
+            int cantidad = scanner.nextInt();
+
+            if (cantidad > 0 && cantidad <= cristalesHidrogeno) {
+                // Realizar la recarga en la clase Nave
+                nave.recargarPropulsores(cantidad);
+                retirarCristalesHidrogeno(cantidad); // Restar los cristales del inventario
+                System.out.println("Has recargado el combustible de la nave.");
+            } else {
+                System.out.println("Cantidad no válida.");
+            }
+        } else {
+            System.out.println("No tienes suficientes cristales de hidrógeno para recargar la nave.");
+        }
+    }
+
+
+
+    
 }

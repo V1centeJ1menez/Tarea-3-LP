@@ -14,7 +14,7 @@ public class EstadoMainMenu extends GameState {
 
     @Override
     public void mostrarOpciones() {
-
+        limpiarPantalla();
         // Mostrar arte ASCII y opciones
         mostrarArteASCII();
         

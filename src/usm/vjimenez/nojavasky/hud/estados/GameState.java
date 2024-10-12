@@ -36,7 +36,7 @@ public abstract class GameState {
     }
 
     // Método para limpiar la consola (esto puede variar según el sistema operativo)
-    public void limpiarPantalla() {
+    public static void limpiarPantalla() {
         // Esto es un método simple para limpiar la consola
         try {
             if (System.getProperty("os.name").contains("Windows")) {
@@ -58,7 +58,7 @@ public abstract class GameState {
     }
     }
     
-     public void pausa() {
+     public static void pausa() {
         try {
             System.out.println("Presiona Enter para continuar...");
             System.in.read(); // Espera a que el usuario presione Enter

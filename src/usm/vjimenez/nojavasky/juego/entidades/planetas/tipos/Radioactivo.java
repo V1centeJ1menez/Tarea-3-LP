@@ -24,15 +24,13 @@ public class Radioactivo extends Planeta {
         + "planetas, se puede intercambiar este elemento por mejoras en los asentamientos.";
     }
 
+    public int getUranio() {
+        return uranio;
+    }
     public int getRadiacion() {
         return radiacion;
     }
 
-    public int getUranio() {
-        return uranio;
-    }
-
-    /* 
     public void setUranio(int uranio) {
         this.uranio = uranio;
     }
@@ -41,7 +39,6 @@ public class Radioactivo extends Planeta {
         this.radiacion = radiacion;
     }
 
-    */
     // Métodos de la clase abstracta Planeta
     @Override
     public boolean visitar(Jugador jugador) {
@@ -51,13 +48,17 @@ public class Radioactivo extends Planeta {
 
     @Override
     public int extraerRecursos(int tipo) {
-        // Implementación por definir
-        return 0;
+        if (tipo == 3) { // Platino
+            System.out.println("¡Extrayendo Uranio del planeta Radioactivo!");;
+            return super.extraerRecursos(tipo); // Delegamos la lógica de extracción
+        }
+        return super.extraerRecursos(tipo); // Si no es un recurso válido, no se extrae nada
     }
 
     @Override
     public boolean salir() {
         // Implementación por definir
-        return false;
+        return true;
     }
+
 }
