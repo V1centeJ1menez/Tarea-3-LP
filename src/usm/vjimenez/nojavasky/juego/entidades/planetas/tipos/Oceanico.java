@@ -1,13 +1,16 @@
 package usm.vjimenez.nojavasky.juego.entidades.planetas.tipos;
 
+import usm.vjimenez.nojavasky.juego.entidades.Alienigena;
 import usm.vjimenez.nojavasky.juego.entidades.planetas.Planeta;
 import usm.vjimenez.nojavasky.juego.entidades.planetas.tieneAsentamientos;
 import usm.vjimenez.nojavasky.juego.controladores.Jugador;
+
 
 public class Oceanico extends Planeta implements tieneAsentamientos {
 
     // Atributo
     private int profundidad;
+    private Alienigena alienigenaPersistente;
 
     // Constructor
     public Oceanico(int radio, int cristalesHidrogeno, int floresDeSodio, int profundidad, float consumoEnergia) {
@@ -27,9 +30,15 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
     public int getProfundidad() {
         return profundidad;
     }
-    /*public void setProfundidad(int profundidad) {
+    public Alienigena getAlienigenaPersistente() {
+        return alienigenaPersistente;
+    }
+    public void setProfundidad(int profundidad) {
         this.profundidad = profundidad;
-    }*/
+    }
+    public void setAlienigenaPersistente(Alienigena alienigenaPersistente) {
+        this.alienigenaPersistente = alienigenaPersistente;
+    }
 
     // Métodos de la clase abstracta Planeta
     @Override
@@ -54,12 +63,15 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
     public boolean verificartieneAsentamientos() {
         return true; // Este planeta tiene asentamientos
     }
-    // Método de la interfaz tieneAsentamientos
     @Override
     public void visitarAsentamientos(Jugador jugador) {
-        // Implementación por definir
-    }
+        // Si no existe un alienígena persistente, lo generamos
+        if (alienigenaPersistente == null) {
+            Alienigena generador = new Alienigena("", "Aqualuxian", " ", " ", " "); // Crear una instancia
+            alienigenaPersistente = generador.generarAlienigena();  // Generar el alienígena
+        }
 
+    }
 
 }
 

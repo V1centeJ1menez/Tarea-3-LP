@@ -25,6 +25,25 @@ public class EstadoExtraccionRecursos extends GameState {
             limpiarPantalla();
             mostrarDescenso();
             mostrarInterface();
+
+            if (jugador.getUnidadesEnergiaProteccion() == 0) {
+                limpiarPantalla();
+                mostrarCabeceraMuerto();
+                pausa();
+            
+                // Reiniciar las instancias
+                GameStateManager nuevoGsm = new GameStateManager(); // Crea una nueva instancia del GameStateManager
+                Jugador nuevoJugador = new Jugador();               // Crea un nuevo jugador
+                Nave nuevaNave = new Nave();                        // Crea una nueva nave
+                MapaGalactico nuevoMapa = new MapaGalactico();      // Crea un nuevo mapa galáctico
+            
+                // Cambia el estado actual al menú principal con las nuevas instancias
+                cambiarEstado(new EstadoMainMenu(nuevoGsm, nuevoJugador, nuevaNave, nuevoMapa));
+                
+                enMenuExtraccion = false; // Termina el bucle del menú de extracción
+            }
+            
+
             System.out.println("=== Extracción de Recursos ===");
             System.out.println("Recursos disponibles en el planeta:");
             System.out.println("[0] Volver");
@@ -226,5 +245,51 @@ public class EstadoExtraccionRecursos extends GameState {
     
         }
     }
+
+
+    private void mostrarCabeceraMuerto() {
+        System.out.println("Has cedido a las adversidades del planeta...");
+        System.out.println("                                        ███    ██                                      ");
+        System.out.println("                                                       █     █                                  ");
+        System.out.println("                                           ███    ██    ██    ███                               ");
+        System.out.println("                                                      ███                                           ");
+        System.out.println("                                           ██████████                                                ");
+        System.out.println("                                      ███████████████████  ██                                        ");
+        System.out.println("                                    ██ ███████████████████                                           ");
+        System.out.println("                                    ██████████████████████                                           ");
+        System.out.println("                                 ██ ██████████████████████ ██                                        ");
+        System.out.println("                               ██   ██████████████████████   ██                                      ");
+        System.out.println("                               ██ ██████████████████████████ ████                                    ");
+        System.out.println("                             ████ █████████████████████████  ██ ██                                  ");
+        System.out.println("                              ██  █████████████████████████  ██ ██                                  ");
+        System.out.println("                            ██ ██ ███████  █████████  ███████ ██  █                                 ");
+        System.out.println("                            ██ ██ █████      █████      █████  █  █                                 ");
+        System.out.println("                            ██ ██ ███   ███    █   ███    ███  ████                                 ");
+        System.out.println("                            ██ ██ █████      █████      █████  ████                                 ");
+        System.out.println("                            ██ ██ ███████  ████  ███  ███████ ██  █                                 ");
+        System.out.println("                            █████  ██████████     ███████████ ██  █                                 ");
+        System.out.println("                            ██   █   ██████████  ██████████  ██   ██                                ");
+        System.out.println("                             ██  ██     █████████████████    ██ ██                                  ");
+        System.out.println("                              ███ ████    █████████████    ██  ███                                  ");
+        System.out.println("                              ████  ███   █████████████  ██  █████                                  ");
+        System.out.println("                             ██████   ███ ██ ██  █  █   ██ ███████                                  ");
+        System.out.println("                              ████████                 █  ███████                                    ");
+        System.out.println("                              █  ██████████████████████████████  █                                    ");
+        System.out.println("                           ██  ██ ████████████████████████████ ██  ██                                ");
+        System.out.println("                           ████ ██  █████   █     █   █████  ██ █████                                ");
+        System.out.println("                         ████████ ██  ███   █     █   ████  ██ ████████                              ");
+        System.out.println("                         ██████████ █ ████████████████████ █ ██████████                             ");
+        System.out.println("                       █████████████  ████████████████████  █████████████                           ");
+        System.out.println("                      ██████████████  █  █            █  █  ██████████████                          ");
+        System.out.println("                     ███████████████  █  ██████████████  █  ███████████████                         ");
+        System.out.println("                   █████████          ████            ████          █████████                        ");
+        System.out.println("                   █████████  ██████  ███ ████████████ ███  ██████  ██  █  ██                       ");
+        System.out.println("                 ███████████  █    █  ███ ██        ██ ███  █    █  ██  █  ███                      ");
+        System.out.println("                ████████████  ██████  ███ ████████████ ███  ██████  ███████████                     ");
+        System.out.println("                ████████████          ███ ██        ██ ███          ██  █  ████                    ");
+        System.out.println("                ████████████████████  ███ ████████████ ███  ███████████████████                       ");
+        System.out.println();
+    }
+    
 
 }

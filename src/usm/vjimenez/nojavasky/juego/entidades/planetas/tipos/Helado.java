@@ -1,5 +1,6 @@
 package usm.vjimenez.nojavasky.juego.entidades.planetas.tipos;
 
+import usm.vjimenez.nojavasky.juego.entidades.Alienigena;
 import usm.vjimenez.nojavasky.juego.entidades.planetas.Planeta;
 import usm.vjimenez.nojavasky.juego.entidades.planetas.tieneAsentamientos;
 import usm.vjimenez.nojavasky.juego.controladores.Jugador;
@@ -8,6 +9,7 @@ public class Helado extends Planeta implements tieneAsentamientos {
 
     // Atributo
     private int temperatura;
+    private Alienigena alienigenaPersistente; 
 
     // Constructor
     public Helado(int radio, int cristalesHidrogeno, int floresDeSodio, int temperatura, float consumoEnergia) {
@@ -26,8 +28,14 @@ public class Helado extends Planeta implements tieneAsentamientos {
     public int getTemperatura() {
         return temperatura;
     }
+    public Alienigena getAlienigenaPersistente() {
+        return alienigenaPersistente;
+    }
     public void setTemperatura(int temperatura) {
         this.temperatura = temperatura;
+    }
+    public void setAlienigenaPersistente(Alienigena alienigenaPersistente) {
+        this.alienigenaPersistente = alienigenaPersistente;
     }
 
     // Métodos de la clase abstracta Planeta
@@ -56,9 +64,13 @@ public class Helado extends Planeta implements tieneAsentamientos {
     // Método de la interfaz tieneAsentamientos
     @Override
     public void visitarAsentamientos(Jugador jugador) {
-        // Implementación por definir
-    }
+        // Si no existe un alienígena persistente, lo generamos
+        if (alienigenaPersistente == null) {
+            Alienigena generador = new Alienigena("", "Glaciarido", " ", " ", " "); // Crear una instancia
+            alienigenaPersistente = generador.generarAlienigena();  // Generar el alienígena
+        }
 
+    }
 
 }
 

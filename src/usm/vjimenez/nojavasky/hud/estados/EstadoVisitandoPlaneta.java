@@ -42,8 +42,12 @@ public class EstadoVisitandoPlaneta extends GameState {
             switch (opcion) {
                 case 0:
                     if ( (mapa.getPlanetaActual() instanceof tieneAsentamientos)) {
-                        System.out.println("Visitando los asentamientos...");
-                        // Aquí puedes implementar la lógica para visitar asentamientos
+                       
+                        limpiarPantalla();
+                        mostrarDescenso();
+                        animarCaminoAsentamientos();
+                        cambiarEstado(new EstadoVisitaAsentamientos(gsm, jugador, nave, mapa));
+                        enMenuVisita = false;
                     } else {
                         System.out.println("Opción no válida.");
                     }
@@ -79,6 +83,22 @@ public class EstadoVisitandoPlaneta extends GameState {
                     break;
             }
         }
+    }
+
+
+    private void animarCaminoAsentamientos() {
+        String[] mensajes = {
+            "Observas unas estructuras a lo lejos..",
+            "Que curiosidad...",
+            "Caminas...",
+            "Y caminas..."
+        };
+
+        for (String mensaje : mensajes) {
+            System.out.println(mensaje);
+            pausaAnimacion(500); // Pausa por 1 segundo entre mensajes
+        }
+        mostrarDescenso(); // Mostrar el descenso después del efecto del monitor
     }
 
     private void animarSalidaDelPlaneta() {

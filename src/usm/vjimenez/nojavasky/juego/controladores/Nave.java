@@ -2,6 +2,8 @@ package usm.vjimenez.nojavasky.juego.controladores;
 
 //import usm.vjimenez.nojavasky.juego.entidades.planetas.Planeta;
 
+import usm.vjimenez.nojavasky.utilidad.RandomNumberGenerator;
+
 public class Nave {
 
     //*************************************************** ATRIBUTOS ***************************************************//
@@ -39,46 +41,60 @@ public class Nave {
     public boolean viajarPlaneta(MapaGalactico MG, int direccion, int tamanoSalto) {
         int posicionActual = MG.getPosicionActual();
         int nuevaPosicion = posicionActual + direccion * tamanoSalto;
-
+    
         // Verificar si la nueva posición es válida (no debe ir hacia atrás si estamos en el origen)
         if (nuevaPosicion < 0 || (posicionActual == 0 && direccion == -1)) {
             System.out.println("No puedes saltar a esa posición.");
             return false;
         }
-
+    
         // Calcular el consumo de combustible basado en el tamaño del salto
         float unidadesConsumidas = (float)(0.75 * Math.pow(tamanoSalto, 2) * (1 - eficienciaPropulsor));
-        
+    
         // Verificar si hay suficiente combustible para hacer el salto
         if (unidadesCombustible >= unidadesConsumidas) {
             // Descontar el combustible consumido
             this.unidadesCombustible -= unidadesConsumidas;
-
+    
             if (unidadesCombustible < 0) {
                 unidadesCombustible = 0;
-                
             }
-
+    
+            // Si el combustible llega a cero, mover a posición segura
+            if (unidadesCombustible == 0) {
+                System.out.println("Te has quedado sin combustible. Moviéndote a una posición segura...");
+                moverAPosicionSegura(MG);
+                return false;
+            }
+    
             // Expandir la lista si es necesario, llenando con "no visitados" (null)
             while (nuevaPosicion >= MG.getPlanetas().size()) {
                 MG.getPlanetas().add(null);  // Añadir un espacio "no visitado"
             }
-
+    
             // Actualizar la posición actual del jugador
             MG.setPosicionActual(nuevaPosicion);
             System.out.println("Has saltado a la posición " + nuevaPosicion);
-
+    
             // Generar el planeta en la nueva posición si es necesario (si es null, se genera al visitarlo)
             if (MG.getPlanetas().get(nuevaPosicion) == null) {
                 MG.generadorPlaneta(); // Generar un nuevo planeta
             }
-
+    
             return true; // Salto exitoso
         } else {
             System.out.println("No tienes suficiente combustible para este salto.");
             return false; // Salto fallido
         }
     }
+    
+    // Método que mueve la nave a una posición segura
+    private void moverAPosicionSegura(MapaGalactico MG) {
+        // Mover la nave al origen (posición 0) cuando se quede sin combustible
+        MG.setPosicionActual(0);
+        System.out.println("Has sido movido al origen (posición 0) para recargar combustible.");
+    }
+    
 
     public int analizarSaltos(float tamañoSalto) {
         float combustibleActual = this.unidadesCombustible; // Combustible disponible
@@ -112,6 +128,38 @@ public class Nave {
     
         System.out.println("Has recargado " + unidadesRecargadas + " unidades de combustible.");
         System.out.println("Combustible actual en la nave: " + unidadesCombustible + " unidades.");
+    }
+
+    // Método para mejorar la capacidad total de combustible de la nave
+    public void mejorarCapacidad() {
+        // Aumenta la capacidad total de combustible en un 15% (por ejemplo)
+        this.capcidadTotalCombustible *= 1.15;
+        System.out.println("Capacidad total de combustible de la nave mejorada a: " + this.capcidadTotalCombustible);
+    }
+
+    
+    public void mejorarEficiencia() {
+        float a = (float) 0.5;
+        float b = (float) 10.0;
+
+        float incremento = RandomNumberGenerator.randF(a, b);
+    
+        // Aumenta la eficiencia energética
+        this.eficienciaPropulsor+= incremento;
+    
+        // Limitar la eficiencia máxima a 100%
+        if (this.eficienciaPropulsor > 100) {
+            this.eficienciaPropulsor = 100;  // Limitar a 100%
+        }
+
+        // Determinar el mensaje según el incremento
+        if (incremento <= 5) {
+            System.out.println("Eficiencia del propulsor mejorada a: " + (this.eficienciaPropulsor * 100) + "% - ¡Lo mejor que se pudo hacer!");
+        } else if (incremento > 5 && incremento <= 7) {
+            System.out.println("Eficiencia del propulsor mejorada a: " + (this.eficienciaPropulsor * 100) + "% - ¡Nada mal!");
+        } else if (incremento > 7) {
+            System.out.println("Eficiencia del propulsor mejorada a: " + (this.eficienciaPropulsor * 100) + "% - ¡Éxitoso!");
+        }
     }
     
 }

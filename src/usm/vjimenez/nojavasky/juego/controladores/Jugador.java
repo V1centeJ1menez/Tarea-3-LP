@@ -1,6 +1,7 @@
 package usm.vjimenez.nojavasky.juego.controladores;
 
 import usm.vjimenez.nojavasky.juego.inventario.Inventario;
+import usm.vjimenez.nojavasky.utilidad.RandomNumberGenerator;
 
 //import usm.vjimenez.nojavasky.juego.entidades.planetas.Planeta;
 
@@ -11,7 +12,7 @@ public class Jugador {
     private String nombreJugador;
     private float capcidadTotalEnergiaProteccion = 100;
     private float unidadesEnergiaProteccion = 100; // capcidad inicial de 100.0 unidades de energia
-    private float eficienciaEnergiaProteccion = 0; // eficiencia inicial de 0.0%
+    private float eficienciaEnergiaProteccion = 0 ; // eficiencia inicial de 0.0%
     private Inventario inventario;
 
 
@@ -97,7 +98,38 @@ public class Jugador {
         System.out.println("Has recargado " + unidadesRecargadas + " unidades de energía.");
         System.out.println("Energía actual del exotraje: " + unidadesEnergiaProteccion + " unidades.");
     }
+
+
+     // Método para mejorar la capacidad de energía del traje
+     public void mejorarCapacidad() {
+        // Aumenta la capacidad total en un 10% (por ejemplo)
+        this.capcidadTotalEnergiaProteccion *= 1.10;
+        System.out.println("Capacidad total de energía de protección mejorada a: " + this.capcidadTotalEnergiaProteccion);
+    }
+
+    public void mejorarEficiencia() {
+   
+        float a = (float) 0.5;
+        float b = (float) 10.0;
+
+        float incremento = RandomNumberGenerator.randF(a, b);
     
-
-
+        // Aumenta la eficiencia energética
+        this.eficienciaEnergiaProteccion += incremento;
+    
+        // Limitar la eficiencia máxima a 100%
+        if (this.eficienciaEnergiaProteccion > 100) {
+            this.eficienciaEnergiaProteccion = 100;  // Limitar a 100%
+        }
+    
+        // Determinar el mensaje según el incremento
+        if (incremento <= 5) {
+            System.out.println("Eficiencia energética del traje mejorada a: " + (this.eficienciaEnergiaProteccion * 100) + "% - Lo mejor que se pudo hacer");
+        } else if (incremento > 5 && incremento <= 7) {
+            System.out.println("Eficiencia energética del traje mejorada a: " + (this.eficienciaEnergiaProteccion * 100) + "% - Nada mal");
+        } else if (incremento > 7) {
+            System.out.println("Eficiencia energética del traje mejorada a: " + (this.eficienciaEnergiaProteccion * 100) + "% - ¡Éxitoso!");
+        }
+    
+    }
 }

@@ -7,6 +7,5 @@ public interface tieneAsentamientos {
     // Método
     boolean verificartieneAsentamientos();
     void visitarAsentamientos(Jugador jugador);
-    void generarAsentamientoRandom();
 }
 

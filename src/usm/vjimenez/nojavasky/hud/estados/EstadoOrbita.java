@@ -3,6 +3,7 @@ package usm.vjimenez.nojavasky.hud.estados;
 import usm.vjimenez.nojavasky.hud.GameStateManager;
 import usm.vjimenez.nojavasky.juego.controladores.Jugador;
 import usm.vjimenez.nojavasky.juego.controladores.Nave;
+import usm.vjimenez.nojavasky.juego.entidades.planetas.Planeta;
 import usm.vjimenez.nojavasky.juego.controladores.MapaGalactico;
 import usm.vjimenez.nojavasky.utilidad.RandomNumberGenerator;
 
@@ -35,6 +36,7 @@ public class EstadoOrbita extends GameState {
             mostrarOpcionesMenu(); // Muestra las opciones del menú
 
             int opcion = scanner.nextInt(); // Usar el scanner de la superclase
+            Planeta planetaActual = mapa.getPlanetaActual();
 
             switch (opcion) {
                 case 1:
@@ -63,10 +65,15 @@ public class EstadoOrbita extends GameState {
                             case 2:
                                 // Bajar al planeta
                                 limpiarPantalla();
-                                cambiarEstado(new EstadoVisitandoPlaneta(gsm, jugador, nave, mapa,true));
-                                enMenuPlaneta = false; // Salir del submenú después de bajar al planeta
-                                jugando = false;
-                                break;
+
+                                if (planetaActual.getTipo() == "Centro Galactico") {
+                                    cambiarEstado(new EstadoCentroGalactico(gsm, jugador, nave, mapa));
+                                } else{
+                                    cambiarEstado(new EstadoVisitandoPlaneta(gsm, jugador, nave, mapa,true));
+                                    enMenuPlaneta = false; // Salir del submenú después de bajar al planeta
+                                    jugando = false;
+                                    break;
+                                };
 
                             case 3:
                                 // Volver al menú principal
@@ -125,7 +132,8 @@ public class EstadoOrbita extends GameState {
 
     // Método para mostrar la información del planeta
     private void mostrarBajarPlaneta() {
-        String tipoPlaneta = mapa.getPlanetaActual().getTipo();
+        Planeta planetaActual = mapa.getPlanetaActual();
+        String tipoPlaneta = planetaActual.getTipo();
         
         // Simular una pantalla de computadora con la descripción
         System.out.println("==============================================");
@@ -133,19 +141,12 @@ public class EstadoOrbita extends GameState {
         System.out.println("==============================================");
         System.out.println("| Tipo: " + tipoPlaneta);
         System.out.println("|--------------------------------------------|");
-        String descripcion = mapa.generadorPlaneta().getDescripcion();
+        String descripcion = planetaActual.getDescripcion();
         
         // Formatear la descripción para que parezca dentro de una pantalla
         mostrarDescripcionEnPantalla(descripcion, 44);
         System.out.println("==============================================");
 
-        // Condición de victoria
-        if (tipoPlaneta.equals("Centro Galactico") && nave.getEficienciaPropulsor() < 50) {
-            System.out.println("Aún no puedes llegar a este lugar, necesitas una mejor nave");
-        } else if (tipoPlaneta.equals("Centro Galactico") && nave.getEficienciaPropulsor() >= 50) {
-            System.out.println("Ganaste");
-            System.exit(0); // Termina el juego
-        }
     }
 
     // Método para mostrar la descripción con ajuste de líneas
