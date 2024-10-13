@@ -183,52 +183,51 @@ public class EstadoVisitandoPlaneta extends GameState {
         System.out.println("==========================================================================================================================");
         System.out.println("|------------------------------------------------------------------------------------------------------------------------|");
 
-        if(planetaActual instanceof CentroGalactico){ System.out.println("Estas en Centro Galactico, osea ganasteee.. Aqui cerrar juego.");} 
-        else {
-
-            System.out.println("Tipo de planeta: " + planetaActual.getTipo()); // Suponiendo que tienes un método para obtener el tipo de planeta
-            System.out.println("Posición del planeta: " + mapa.getPosicionActual()); // Método que obtiene la posición
-            System.out.println("Radio del planeta: " + planetaActual.getRadio() + " metros"); // Suponiendo que tienes un método para obtener el radio
-            
-            // Mostrar los recursos
-            System.out.println("Recursos disponibles:");
-            System.out.println("Cristales de Hidrógeno: " + planetaActual.getCristalesHidrogeno() + " unidades");
-            System.out.println("Flores de Sodio: " + planetaActual.getFloresDeSodio() + " unidades");
-
-            if (planetaActual instanceof Radioactivo) {
-                Radioactivo radioactivo = (Radioactivo) planetaActual;
-                System.out.println("Uranio: " + radioactivo.getUranio() + " unidades");
-                System.out.println("Radiación: " + radioactivo.getRadiacion() + " Rad");
-            } else if (planetaActual instanceof Volcanico) {
-                Volcanico volcanico = (Volcanico) planetaActual;
-                System.out.println("Platino: " + volcanico.getPlatino() + " unidades");
-                System.out.println("Temperatura: " + volcanico.getTemperatura()+ " ºC");
-            } else if (planetaActual instanceof Oceanico) {
-                Oceanico oceanico = (Oceanico) planetaActual;
-                System.out.println("Profundidad: " + oceanico.getProfundidad()+ " metros");
-            } else if (planetaActual instanceof Helado) {
-                Helado helado = (Helado) planetaActual;
-                System.out.println("Temperatura: " + helado.getTemperatura() + " ºC");
-            }   
-
-            if (planetaActual instanceof tieneAsentamientos) {
-                System.out.println("Este planeta tiene asentamientos.");
-            } else {
-                System.out.println("Este planeta no tiene asentamientos.");
-            }
-            
-            // Información del jugador
-            System.out.println("|------------------------------------------------------------------------------------------------------------------------|");
-            System.out.println("Energía del traje: " + jugador.getUnidadesEnergiaProteccion() + " unidades de energia de proteccion");
-            System.out.println("Eficiencia del traje: " + jugador.getEficienciaEnergiaProteccion() + " %");
-            System.out.println("|------------------------------------------------------------------------------------------------------------------------|");
-            System.out.println("Combustible: " + nave.getUnidadesCombustible() + " unidades de combustible");
-            System.out.println("Eficiencia de la nave: " + nave.getEficienciaPropulsor()+ " %");
-            System.out.println("|------------------------------------------------------------------------------------------------------------------------|");
-            System.out.println("==========================================================================================================================");
         
-            }
+
+        System.out.println("Tipo de planeta: " + planetaActual.getTipo()); // Suponiendo que tienes un método para obtener el tipo de planeta
+        System.out.println("Posición del planeta: " + mapa.getPosicionActual()); // Método que obtiene la posición
+        System.out.println("Radio del planeta: " + planetaActual.getRadio() + " metros"); // Suponiendo que tienes un método para obtener el radio
+        
+        // Mostrar los recursos
+        System.out.println("Recursos disponibles:");
+        System.out.println("Cristales de Hidrógeno: " + planetaActual.getCristalesHidrogeno() + " unidades");
+        System.out.println("Flores de Sodio: " + planetaActual.getFloresDeSodio() + " unidades");
+
+        if (planetaActual instanceof Radioactivo) {
+            Radioactivo radioactivo = (Radioactivo) planetaActual;
+            System.out.println("Uranio: " + radioactivo.getUranio() + " unidades");
+            System.out.println("Radiación: " + radioactivo.getRadiacion() + " Rad");
+        } else if (planetaActual instanceof Volcanico) {
+            Volcanico volcanico = (Volcanico) planetaActual;
+            System.out.println("Platino: " + volcanico.getPlatino() + " unidades");
+            System.out.println("Temperatura: " + volcanico.getTemperatura()+ " ºC");
+        } else if (planetaActual instanceof Oceanico) {
+            Oceanico oceanico = (Oceanico) planetaActual;
+            System.out.println("Profundidad: " + oceanico.getProfundidad()+ " metros");
+        } else if (planetaActual instanceof Helado) {
+            Helado helado = (Helado) planetaActual;
+            System.out.println("Temperatura: " + helado.getTemperatura() + " ºC");
+        }   
+
+        if (planetaActual instanceof tieneAsentamientos) {
+            System.out.println("Este planeta tiene asentamientos.");
+        } else {
+            System.out.println("Este planeta no tiene asentamientos.");
         }
+        
+        // Información del jugador
+        System.out.println("|------------------------------------------------------------------------------------------------------------------------|");
+        System.out.println("Energía del traje: " + jugador.getUnidadesEnergiaProteccion() + " unidades de energia de proteccion");
+        System.out.println("Eficiencia del traje: " + jugador.getEficienciaEnergiaProteccion() + " %");
+        System.out.println("|------------------------------------------------------------------------------------------------------------------------|");
+        System.out.println("Combustible: " + nave.getUnidadesCombustible() + " unidades de combustible");
+        System.out.println("Eficiencia de la nave: " + nave.getEficienciaPropulsor()+ " %");
+        System.out.println("|------------------------------------------------------------------------------------------------------------------------|");
+        System.out.println("==========================================================================================================================");
+    
+        }
+        
 
     // Método para mostrar el inventario del jugador
     private void mostrarInventario() {
