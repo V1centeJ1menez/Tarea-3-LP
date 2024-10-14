@@ -8,21 +8,19 @@ public class Radioactivo extends Planeta {
     // Atributo
     private int radiacion;
     private int uranio;
-    // Constructor
+    // Constructor de la clase Radioactivo
     public Radioactivo(int radio, int cristalesHidrogeno, int floresDeSodio, int radiacion, int uranio, float consumoEnergia) {
-        this.radio = radio;
-        this.cristalesHidrogeno = cristalesHidrogeno;
-        this.floresDeSodio = floresDeSodio;
+        // Llamada al constructor de la superclase Planeta
+        super(radio, cristalesHidrogeno, floresDeSodio, uranio, 0, consumoEnergia); // Pasar '0' para platino si no se usa
         this.radiacion = radiacion;
-        this.uranio = uranio;
-        this.consumoEnergia = consumoEnergia;
-        this.tipo = "Radioactivo";
-        this.descripcion =  "Estos planetas están llenos de vida muy exótica. Pero la atmósfera es muy densa en "
-        + "componentes radiactivos incompatibles con tu sistema, por lo que el traje consume "
-        + "mucha energía para evitar los efectos letales. Esta radiación proviene de los grandes "
-        + "yacimientos ricos en Uranio, un elemento muy cotizado por los asentamientos de otros "
-        + "planetas, se puede intercambiar este elemento por mejoras en los asentamientos.";
+        this.setTipo("Radioactivo");
+        this.setDescripcion("Estos planetas están llenos de vida muy exótica. Pero la atmósfera es muy densa en "
+            + "componentes radiactivos incompatibles con tu sistema, por lo que el traje consume "
+            + "mucha energía para evitar los efectos letales. Esta radiación proviene de los grandes "
+            + "yacimientos ricos en Uranio, un elemento muy cotizado por los asentamientos de otros "
+            + "planetas, se puede intercambiar este elemento por mejoras en los asentamientos.");
     }
+
 
     public int getUranio() {
         return uranio;
@@ -43,7 +41,7 @@ public class Radioactivo extends Planeta {
     @Override
     public boolean visitar(Jugador jugador) {
         // Implementación por definir
-        return false;
+        return true;
     }
 
     @Override

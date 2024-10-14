@@ -4,6 +4,7 @@ import usm.vjimenez.nojavasky.hud.GameStateManager;
 import usm.vjimenez.nojavasky.juego.controladores.Jugador;
 import usm.vjimenez.nojavasky.juego.controladores.Nave;
 import usm.vjimenez.nojavasky.juego.entidades.planetas.Planeta;
+import usm.vjimenez.nojavasky.juego.entidades.planetas.tipos.CentroGalactico;
 import usm.vjimenez.nojavasky.juego.controladores.MapaGalactico;
 import usm.vjimenez.nojavasky.utilidad.RandomNumberGenerator;
 
@@ -65,15 +66,21 @@ public class EstadoOrbita extends GameState {
                             case 2:
                                 // Bajar al planeta
                                 limpiarPantalla();
+                                if (planetaActual.visitar(jugador)) {
+                                
+                                    if (planetaActual instanceof CentroGalactico) {
+                                        cambiarEstado(new EstadoCentroGalactico(gsm, jugador, nave, mapa));
+                                    } else{
+                                        cambiarEstado(new EstadoVisitandoPlaneta(gsm, jugador, nave, mapa,true));
+                                        enMenuPlaneta = false; // Salir del submenú después de bajar al planeta
+                                        jugando = false;
+                                        break;
+                                    }
 
-                                if (planetaActual.getTipo() == "Centro Galactico") {
-                                    cambiarEstado(new EstadoCentroGalactico(gsm, jugador, nave, mapa));
-                                } else{
-                                    cambiarEstado(new EstadoVisitandoPlaneta(gsm, jugador, nave, mapa,true));
-                                    enMenuPlaneta = false; // Salir del submenú después de bajar al planeta
-                                    jugando = false;
-                                    break;
-                                };
+                                } else {
+                                    System.out.println("No se pudo visitar planeta...");
+                                }
+                              
 
                             case 3:
                                 // Volver al menú principal

@@ -5,20 +5,21 @@ import usm.vjimenez.nojavasky.juego.controladores.Jugador;
 
 public class CentroGalactico extends Planeta {
 
-    // Constructor
+    // Constructor de la clase CentroGalactico
     public CentroGalactico() {
-        this.tipo = "Centro Galactico";
-        this.descripcion = "Solo existe un centro galáctico. Es un lugar muy hostil, estrellas parecen orbitar "
-                     + "un objeto estelar desconocido, y solo las mejores naves espaciales pueden llegar. Para "
-                     + "poder visitar este lugar es necesario una nave con una eficiencia de propulsor sobre "
-                     + "el 50%.";
+        // Llamada al constructor de la superclase Planeta con valores predeterminados
+        super(0, 0, 0, 0, 0, 0); // Pasando 0 para todos los atributos de la superclase
+        this.setTipo("Centro Galáctico");
+        this.setDescripcion("Solo existe un centro galáctico. Es un lugar muy hostil, estrellas parecen orbitar "
+                + "un objeto estelar desconocido, y solo las mejores naves espaciales pueden llegar. Para "
+                + "poder visitar este lugar es necesario una nave con una eficiencia de propulsor sobre "
+                + "el 50%.");
     }
-
     // Métodos de la clase abstracta Planeta
     @Override
     public boolean visitar(Jugador jugador) {
         // Implementación por definir
-        return false;
+        return true;
     }
 
     @Override

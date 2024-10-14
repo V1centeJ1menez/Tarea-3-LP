@@ -28,19 +28,53 @@ public class EstadoExtraccionRecursos extends GameState {
 
             if (jugador.getUnidadesEnergiaProteccion() == 0) {
                 limpiarPantalla();
-                mostrarCabeceraMuerto();
+                mostrarCabeceraDesplomado();
+
+                System.out.println("*******************************************************");
+                System.out.println("*                                                     *");
+                System.out.println("*   Te desplomas lentamente mientras la energía de tu  *");
+                System.out.println("*   traje se agota por completo. El frío y la oscuridad*");
+                System.out.println("*   se ciernen sobre ti mientras sientes como si tu    *");
+                System.out.println("*   cuerpo fuera arrastrado hacia un vacío profundo.   *");
+                System.out.println("*                                                     *");
+                System.out.println("*   Tu consciencia se desvanece... y en ese instante,  *");
+                System.out.println("*   sueñas. Sueñas que mueres en este inhóspito planeta,*");
+                System.out.println("*   atrapado sin esperanza. Pero, de alguna manera,    *");
+                System.out.println("*   algo más grande te envuelve, una fuerza desconocida*");
+                System.out.println("*   y antigua.                                        *");
+                System.out.println("*                                                     *");
+                System.out.println("*   De pronto, despiertas... no en el lugar donde      *");
+                System.out.println("*   caíste, sino en el planeta donde todo comenzó.     *");
+                System.out.println("*   Confundido, miras alrededor: tu nave está allí,    *");
+                System.out.println("*   pero algo ha cambiado. Todas tus mejoras se han    *");
+                System.out.println("*   desvanecido, y tu inventario está vacío. Es como   *");
+                System.out.println("*   si la aventura nunca hubiera ocurrido.            *");
+                System.out.println("*                                                     *");
+                System.out.println("*   Sin embargo, en el fondo de tu ser, sientes que    *");
+                System.out.println("*   no fue solo un sueño. Has perdido todo, pero la    *");
+                System.out.println("*   experiencia aún te acompaña. Un nuevo comienzo...  *");
+                System.out.println("*   ¿O un segundo intento?                            *");
+                System.out.println("*                                                     *");
+                System.out.println("*******************************************************");
+            
+                nave.setCapcidadTotalCombustible(100);
+                nave.setEficienciaPropulsor(0);
+                nave.setUnidadesCombustible(100);
+                jugador.setCapcidadTotalEnergiaProteccion(100);
+                jugador.setEficienciaEnergiaProteccion(0);
+                jugador.setUnidadesEnergiaProteccion(100);
+                Inventario inventario = jugador.getInventario();
+                inventario.setCristalesHidrogeno(0);
+                inventario.setFloresDeSodio(0);
+                inventario.setPlatino(0);
+                inventario.setUranio(0);
                 pausa();
-            
-                // Reiniciar las instancias
-                GameStateManager nuevoGsm = new GameStateManager(); // Crea una nueva instancia del GameStateManager
-                Jugador nuevoJugador = new Jugador();               // Crea un nuevo jugador
-                Nave nuevaNave = new Nave();                        // Crea una nueva nave
-                MapaGalactico nuevoMapa = new MapaGalactico();      // Crea un nuevo mapa galáctico
-            
-                // Cambia el estado actual al menú principal con las nuevas instancias
-                cambiarEstado(new EstadoMainMenu(nuevoGsm, nuevoJugador, nuevaNave, nuevoMapa));
+                mapa.setPosicionActual('0');
+                cambiarEstado(new EstadoOrbita(gsm, jugador, nave, mapa));
+
+                enMenuExtraccion = false;
+              
                 
-                enMenuExtraccion = false; // Termina el bucle del menú de extracción
             }
             
 
@@ -247,48 +281,44 @@ public class EstadoExtraccionRecursos extends GameState {
     }
 
 
-    private void mostrarCabeceraMuerto() {
-        System.out.println("Has cedido a las adversidades del planeta...");
-        System.out.println("                                        ███    ██                                      ");
-        System.out.println("                                                       █     █                                  ");
-        System.out.println("                                           ███    ██    ██    ███                               ");
-        System.out.println("                                                      ███                                           ");
-        System.out.println("                                           ██████████                                                ");
-        System.out.println("                                      ███████████████████  ██                                        ");
-        System.out.println("                                    ██ ███████████████████                                           ");
-        System.out.println("                                    ██████████████████████                                           ");
-        System.out.println("                                 ██ ██████████████████████ ██                                        ");
-        System.out.println("                               ██   ██████████████████████   ██                                      ");
-        System.out.println("                               ██ ██████████████████████████ ████                                    ");
-        System.out.println("                             ████ █████████████████████████  ██ ██                                  ");
-        System.out.println("                              ██  █████████████████████████  ██ ██                                  ");
-        System.out.println("                            ██ ██ ███████  █████████  ███████ ██  █                                 ");
-        System.out.println("                            ██ ██ █████      █████      █████  █  █                                 ");
-        System.out.println("                            ██ ██ ███   ███    █   ███    ███  ████                                 ");
-        System.out.println("                            ██ ██ █████      █████      █████  ████                                 ");
-        System.out.println("                            ██ ██ ███████  ████  ███  ███████ ██  █                                 ");
-        System.out.println("                            █████  ██████████     ███████████ ██  █                                 ");
-        System.out.println("                            ██   █   ██████████  ██████████  ██   ██                                ");
-        System.out.println("                             ██  ██     █████████████████    ██ ██                                  ");
-        System.out.println("                              ███ ████    █████████████    ██  ███                                  ");
-        System.out.println("                              ████  ███   █████████████  ██  █████                                  ");
-        System.out.println("                             ██████   ███ ██ ██  █  █   ██ ███████                                  ");
-        System.out.println("                              ████████                 █  ███████                                    ");
-        System.out.println("                              █  ██████████████████████████████  █                                    ");
+    
+
+    private void mostrarCabeceraDesplomado(){
+        System.out.println("                                  	     ████████████                                                ");
+        System.out.println("                                      ██████████████████                                              ");
+        System.out.println("                                   ████████████████████████                                           ");
+        System.out.println("                                   ████████████████████████                                         ");
+        System.out.println("                                 ██████                ██████                                        ");
+        System.out.println("                               █████    ███████████████   █████                                      ");
+        System.out.println("                               ███   ███               ███   ███                                    ");
+        System.out.println("                              ███ ███   ███████████████   ███  ███                                  ");
+        System.out.println("                              ██ █   ██████████████████████   █ ██                                  ");
+        System.out.println("                             █  █  ██████████████████████████  █  █                                 ");
+        System.out.println("                            ██  █  ██████████████████████████  █  ██                                 ");
+        System.out.println("                            ██  █  ██████████████████████████  █  ██                                 ");
+        System.out.println("                            ██  █  █████     █████     ██████  █  ██                                 ");
+        System.out.println("                            ██  █  ██████████████████████████  █  ██                                 ");
+        System.out.println("                            ██  █  ██████████████████████████  █  ██                                 ");
+        System.out.println("                            ██  █  ██████████████████████████  █  ██                                 ");
+        System.out.println("                              █  █  ████████████████████████  █  █                                    ");
+        System.out.println("                              ███  █  ███████      ███████  █  ███                                  ");
+        System.out.println("                              ████  █   ████████████████   █  ████                                  ");
+        System.out.println("                               █████ ██  ██████████████  ██ █████                                  ");
+        System.out.println("                               ███████ ██████████████████ ███████                                   ");
+        System.out.println("                              █  ██████████████████████████████  █                                   ");
         System.out.println("                           ██  ██ ████████████████████████████ ██  ██                                ");
-        System.out.println("                           ████ ██  █████   █     █   █████  ██ █████                                ");
-        System.out.println("                         ████████ ██  ███   █     █   ████  ██ ████████                              ");
+        System.out.println("                           ████ ██  █████   █     █   █████  ██ █████                               ");
+        System.out.println("                         ████████ ██  ███   █     █   ████  ██ ████████                             ");
         System.out.println("                         ██████████ █ ████████████████████ █ ██████████                             ");
         System.out.println("                       █████████████  ████████████████████  █████████████                           ");
         System.out.println("                      ██████████████  █  █            █  █  ██████████████                          ");
-        System.out.println("                     ███████████████  █  ██████████████  █  ███████████████                         ");
-        System.out.println("                   █████████          ████            ████          █████████                        ");
-        System.out.println("                   █████████  ██████  ███ ████████████ ███  ██████  ██  █  ██                       ");
-        System.out.println("                 ███████████  █    █  ███ ██        ██ ███  █    █  ██  █  ███                      ");
-        System.out.println("                ████████████  ██████  ███ ████████████ ███  ██████  ███████████                     ");
-        System.out.println("                ████████████          ███ ██        ██ ███          ██  █  ████                    ");
-        System.out.println("                ████████████████████  ███ ████████████ ███  ███████████████████                       ");
-        System.out.println();
+        System.out.println("                     ███████████████  █  ██████████████  █  ███████████████                        ");
+        System.out.println("                   █████████          ████            ████          █████████                       ");
+        System.out.println("                   █████████  ██████  ███ ████████████ ███  ██████  █████████                      ");
+        System.out.println("                 ███████████  █    █  ███ ██        ██ ███  █    █  ██████████                     ");
+        System.out.println("                ████████████  ██████  ███ ████████████ ███  ██████  ███████████                    ");
+        System.out.println("                ████████████          ███ ██        ██ ███          ███████████                   ");
+        System.out.println("                ████████████████████  ███ ████████████ ███  ███████████████████                   ");
     }
     
 

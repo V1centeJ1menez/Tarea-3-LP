@@ -1,13 +1,16 @@
 # README.txt
 
+Nombre: Vicente Jiménez
+Rol: 202373523-k
+
 ## No Java Sky
 
 Este proyecto es parte de la materia de Lenguajes de Programación (LP) y está diseñado para ofrecer una experiencia interactiva de juego en Java. 
 
 ### Descripción
 
-El juego permite a los jugadores interactuar con varios elementos en un universo ficticio, donde pueden explorar diferentes planetas y gestionar recursos.
-A través de un sistema de menús, los jugadores pueden tomar decisiones que afectarán el curso del juego.
+No Java’s Sky es un juego de supervivencia y de exploracion planetaria. Donde puedesvisitar diversos planetas, 
+extraer recursos unicos y sobrevivir a las adversidades climaticas,con el objetivo de llegar al centro de la galaxia.
 
 ### Estructura del Proyecto
 
@@ -41,6 +44,7 @@ Tarea3LP_202373523-k/                # Raíz del proyecto
 │               │   │   ├── Alienigena.java
 │               │   │   ├── planetas/ # Planetas del juego
 │               │   │   │   ├── Planeta.java
+│               │   │   │   ├── tieneAsentamientos.java
 │               │   │   │   └── tipos/ # Tipos de planetas
 │               │   │   │       ├── CentroGalactico.java
 │               │   │   │       ├── Helado.java
@@ -50,7 +54,7 @@ Tarea3LP_202373523-k/                # Raíz del proyecto
 │               │   │   └── inventario/ # Sistema de inventario
 │               │   │       └── Inventario.java
 │               │   └── utilidad/     # Clases utilitarias
-│               │       └── Utilidad.java
+│               │       └── RandomNumberGenerator.java
 │               │
 │               └── NoJavaSky.java   # Clase principal
 │

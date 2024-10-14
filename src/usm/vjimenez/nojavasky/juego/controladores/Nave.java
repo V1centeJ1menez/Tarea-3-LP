@@ -3,14 +3,21 @@ package usm.vjimenez.nojavasky.juego.controladores;
 //import usm.vjimenez.nojavasky.juego.entidades.planetas.Planeta;
 
 import usm.vjimenez.nojavasky.utilidad.RandomNumberGenerator;
+import usm.vjimenez.nojavasky.hud.estados.GameState;
 
 public class Nave {
 
     //*************************************************** ATRIBUTOS ***************************************************//
-    private float unidadesCombustible = 100; // Capacidad inicial de 100.0 unidades de energía
-    private float capcidadTotalCombustible = 100;
-    private float eficienciaPropulsor = 0; // Eficiencia inicial de 0.0%
+    private float unidadesCombustible; // Capacidad inicial de 100.0 unidades de energía
+    private float capcidadTotalCombustible;
+    private float eficienciaPropulsor; // Eficiencia inicial de 0.0%
     
+
+    public Nave(){
+        this.unidadesCombustible = 100;
+        this.capcidadTotalCombustible = 100;
+        this.eficienciaPropulsor = 0;
+    }
 
     //*************************************************** GETTERS ***************************************************//
     public float getUnidadesCombustible(){
@@ -50,15 +57,16 @@ public class Nave {
     
         // Calcular el consumo de combustible basado en el tamaño del salto
         float unidadesConsumidas = (float)(0.75 * Math.pow(tamanoSalto, 2) * (1 - eficienciaPropulsor));
+        float unidadesConsumidasEnUnSalto = (float)(0.75 * Math.pow(1, 2) * (1 - eficienciaPropulsor));
     
         // Verificar si hay suficiente combustible para hacer el salto
         if (unidadesCombustible >= unidadesConsumidas) {
             // Descontar el combustible consumido
             this.unidadesCombustible -= unidadesConsumidas;
-    
-            if (unidadesCombustible < 0) {
-                unidadesCombustible = 0;
-            }
+            
+
+            if(unidadesCombustible < unidadesConsumidasEnUnSalto || unidadesCombustible < 0){ unidadesCombustible = 0;}
+          
     
             // Si el combustible llega a cero, mover a posición segura
             if (unidadesCombustible == 0) {
@@ -88,12 +96,41 @@ public class Nave {
         }
     }
     
-    // Método que mueve la nave a una posición segura
+        // Método que mueve la nave a una posición segura con narrativa
     private void moverAPosicionSegura(MapaGalactico MG) {
-        // Mover la nave al origen (posición 0) cuando se quede sin combustible
+        GameState.limpiarPantalla();
         MG.setPosicionActual(0);
-        System.out.println("Has sido movido al origen (posición 0) para recargar combustible.");
+        this.unidadesCombustible = capcidadTotalCombustible;
+        this.capcidadTotalCombustible = 100;
+        this.eficienciaPropulsor = 0;
+
+        System.out.println("***************************************************");
+        System.out.println("*                                                 *");
+        System.out.println("*           ~ Un Sueño en el Vacío ~              *");
+        System.out.println("*                                                 *");
+        System.out.println("* Te encuentras solo en la vasta inmensidad del    *");
+        System.out.println("* espacio. Tu nave se vuelve más pesada, el motor  *");
+        System.out.println("* ruge cada vez más débil. El medidor de           *");
+        System.out.println("* combustible parpadea en rojo.                    *");
+        System.out.println("*                                                 *");
+        System.out.println("* De repente, el silencio. Tu nave flota sin       *");
+        System.out.println("* rumbo, inmóvil en el frío vacío. Lentamente,     *");
+        System.out.println("* el cansancio te atrapa y caes en un profundo     *");
+        System.out.println("* sueño.                                           *");
+        System.out.println("*                                                 *");
+        System.out.println("* En tu sueño, caminas por un lugar extraño,       *");
+        System.out.println("* donde el tiempo parece no tener sentido. Una     *");
+        System.out.println("* voz suave te susurra: 'Tu viaje no termina aquí'.*");
+        System.out.println("*                                                 *");
+        System.out.println("* De repente, te despiertas. Las luces parpadean,  *");
+        System.out.println("* el panel de control te indica que has sido       *");
+        System.out.println("* movido al origen (posición 0). Estás a salvo,    *");
+        System.out.println("* pero tu aventura continúa...                     *");
+        System.out.println("***************************************************");
+        System.out.println();
+        System.out.println("Has sido movido al origen (posición 0) para recargar combustible.\nHas perdido las mejoras de tu nave...");
     }
+
     
 
     public int analizarSaltos(float tamañoSalto) {

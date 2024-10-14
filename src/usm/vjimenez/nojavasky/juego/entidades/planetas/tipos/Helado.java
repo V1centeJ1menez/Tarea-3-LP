@@ -11,18 +11,16 @@ public class Helado extends Planeta implements tieneAsentamientos {
     private int temperatura;
     private Alienigena alienigenaPersistente; 
 
-    // Constructor
+    // Constructor de la clase Helado
     public Helado(int radio, int cristalesHidrogeno, int floresDeSodio, int temperatura, float consumoEnergia) {
-        this.radio = radio;
-        this.cristalesHidrogeno = cristalesHidrogeno;
-        this.floresDeSodio = floresDeSodio;
-        this.temperatura = temperatura;
-        this.consumoEnergia = consumoEnergia;
-        this.tipo = "Helado";
-        this.descripcion = "Estos planetas son una tundra congelada, donde uno siempre verá nieve y hielo. "
-                     + "Son muy ricos en Cristales de Hidrógeno y puede haber asentamientos de especies "
-                     + "alienígenas que están dispuestas a intercambiar recursos por mejoras para tu exotraje "
-                     + "o para tu nave.";
+        // Llamada al constructor de la superclase Planeta
+        super(radio, cristalesHidrogeno, floresDeSodio, 0, 0, consumoEnergia); // Pasando 0 para uranio y platino
+        this.temperatura = temperatura; // Inicializar el atributo temperatura
+        this.setTipo("Helado");
+        this.setDescripcion("Estos planetas son una tundra congelada, donde uno siempre verá nieve y hielo. "
+                + "Son muy ricos en Cristales de Hidrógeno y puede haber asentamientos de especies "
+                + "alienígenas que están dispuestas a intercambiar recursos por mejoras para tu exotraje "
+                + "o para tu nave.");
     }
 
     public int getTemperatura() {
@@ -42,7 +40,7 @@ public class Helado extends Planeta implements tieneAsentamientos {
     @Override
     public boolean visitar(Jugador jugador) {
         // Implementación por definir
-        return false;
+        return true;
     }
 
     @Override

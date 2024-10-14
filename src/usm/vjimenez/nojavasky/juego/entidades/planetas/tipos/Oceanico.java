@@ -12,19 +12,17 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
     private int profundidad;
     private Alienigena alienigenaPersistente;
 
-    // Constructor
+    // Constructor de la clase Oceanico
     public Oceanico(int radio, int cristalesHidrogeno, int floresDeSodio, int profundidad, float consumoEnergia) {
-        this.radio = radio;
-        this.cristalesHidrogeno = cristalesHidrogeno;
-        this.floresDeSodio = floresDeSodio;
+        // Llamada al constructor de la superclase Planeta
+        super(radio, cristalesHidrogeno, floresDeSodio, 0, 0, consumoEnergia); // Pasando 0 para uranio y platino
         this.profundidad = profundidad;
-        this.consumoEnergia = consumoEnergia;
-        this.tipo = "Oceanico";
-        this.descripcion = "Estos planetas son un gran océano, rico en vida acuática. Pero todos los recursos de "
-                     + "valor están en las profundidades, si decides aventurarte bajo el agua, deberas considerar "
-                     + "energía para poder respirar. Son ricos en Flores de Sodio y puede haber "
-                     + "asentamientos de especies alienígenas que están dispuestos a intercambiar recursos "
-                     + "por mejoras a tu exotraje o para tu nave.";
+        this.setTipo("Oceanico");
+        this.setDescripcion("Estos planetas son un gran océano, rico en vida acuática. Pero todos los recursos de "
+                + "valor están en las profundidades, si decides aventurarte bajo el agua, deberás considerar "
+                + "energía para poder respirar. Son ricos en Flores de Sodio y puede haber "
+                + "asentamientos de especies alienígenas que están dispuestos a intercambiar recursos "
+                + "por mejoras a tu exotraje o para tu nave.");
     }
 
     public int getProfundidad() {
@@ -44,7 +42,7 @@ public class Oceanico extends Planeta implements tieneAsentamientos {
     @Override
     public boolean visitar(Jugador jugador) {
         // Implementación por definir
-        return false;
+        return true;
     }
 
     @Override

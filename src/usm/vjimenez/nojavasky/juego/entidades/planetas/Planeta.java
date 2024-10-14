@@ -8,24 +8,32 @@ import java.util.Scanner;
 public abstract class Planeta {
 
     //*************************************************** ATRIBUTOS ***************************************************//
-    protected int radio;
-    protected int cristalesHidrogeno;
-    protected int floresDeSodio;
-    protected int uranio;
-    protected int platino;
-    protected float consumoEnergia;
-    protected String tipo;
-    protected String descripcion;
+    private int radio;
+    private int cristalesHidrogeno;
+    private int floresDeSodio;
+    private int uranio;
+    private int platino;
+    private float consumoEnergia;
+    private String tipo;
+    private String descripcion;
 
     // Para la extracción de recursos específicos de cada planeta
-    protected int unidadesRecurso;
-    protected String nombreRecurso;
+    private int unidadesRecurso;
+    private String nombreRecurso;
 
     // Scanner global
-    protected Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
-
-
+    public Planeta(int radio, int cristalesHidrogeno, int floresDeSodio, int uranio, int platino, float consumoEnergia) {
+        this.radio = radio;
+        this.cristalesHidrogeno = cristalesHidrogeno;
+        this.floresDeSodio = floresDeSodio;
+        this.uranio = uranio;
+        this.platino = platino;
+        this.consumoEnergia = consumoEnergia;
+        this.unidadesRecurso = 0;  // Inicializar unidadesRecurso según sea necesario
+        this.nombreRecurso = "";    // Inicializar nombreRecurso según sea necesario
+    }
     //*************************************************** GETTERS ***************************************************//
     public float getConsumoEnergia() {
         return consumoEnergia;
@@ -46,6 +54,15 @@ public abstract class Planeta {
     }
     public int getUranio() {
         return uranio;
+    }
+    public int getUnidadesRecurso() {
+        return unidadesRecurso;
+    }
+    public String getNombreRecurso() {
+        return nombreRecurso;
+    }
+    public Scanner getScanner() {
+        return scanner;
     }
 
 
@@ -70,12 +87,22 @@ public abstract class Planeta {
     public void setUranio(int uranio) {
         this.uranio = uranio;
     }
+    public void setNombreRecurso(String nombreRecurso) {
+        this.nombreRecurso = nombreRecurso;
+    }
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
+    }
+    public void setUnidadesRecurso(int unidadesRecurso) {
+        this.unidadesRecurso = unidadesRecurso;
+    }
 
 
     //*************************************************** METODOS ***************************************************//
     // Método que se llama cuando el jugador visita el planeta
     public boolean visitar(Jugador jugador) {
-        
+        // Aqui hay que implemetar una logica con el combustible de la nave y la energia del exotraje
+        // por ejemplo
         if (jugador.getUnidadesEnergiaProteccion() == 0) {
             return false;
         }
@@ -138,7 +165,7 @@ public abstract class Planeta {
     }
     // Método para salir del planeta
     public boolean salir() {
-        // Debe ser la logica, consultar combustible
+        // Aqui hay que implemetar una logica con el combustible de la nave y la energia del exotraje
         return true;
     }
 

@@ -68,6 +68,8 @@ public class EstadoVisitandoPlaneta extends GameState {
                     break;
     
                 case 3:
+
+                if(mapa.getPlanetaActual().salir()){
                     if (mapa.getPlanetaActual().salir()) {
                         limpiarPantalla();
                         simularEncendidoMonitor();
@@ -77,6 +79,7 @@ public class EstadoVisitandoPlaneta extends GameState {
                         break;
     
                     }else{ System.out.println("Error por poco combustible");}
+                }
                 default:
                     System.out.println("Opción no válida, por favor intente de nuevo.");
                     pausa();
