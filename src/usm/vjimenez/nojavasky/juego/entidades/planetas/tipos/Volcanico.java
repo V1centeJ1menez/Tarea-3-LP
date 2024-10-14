@@ -5,9 +5,12 @@ import usm.vjimenez.nojavasky.juego.controladores.Jugador;
 
 public class Volcanico extends Planeta {
 
-    // Atributo
+    //*************************************************** ATRIBUTOS ***************************************************//
+
     private int temperatura;
     private int platino;
+
+    //*************************************************** CONSTRUCTOR ***************************************************//
 
     public Volcanico(int radio, int cristalesHidrogeno, int floresDeSodio, int platino, int temperatura, float consumoEnergia) {
         // Llamar al constructor de la superclase (Planeta)
@@ -25,6 +28,7 @@ public class Volcanico extends Planeta {
                 + "este elemento por mejoras en los asentamientos.");
     }
 
+    //*************************************************** GETTERS ***************************************************//
 
     public int getPlatino() {
         return platino;
@@ -34,6 +38,8 @@ public class Volcanico extends Planeta {
         return temperatura;
     }
 
+    //*************************************************** SETTERS ***************************************************//
+
     public void setPlatino(int platino) {
         this.platino = platino;
     }
@@ -41,15 +47,41 @@ public class Volcanico extends Planeta {
     public void setTemperatura(int temperatura) {
         this.temperatura = temperatura;
     }
-    // Métodos de la clase abstracta Planeta
+    //*************************************************** METODOS ***************************************************//
+
     @Override
     public boolean visitar(Jugador jugador) {
+        /**
+         * Permite al jugador visitar el planeta actual.
+         *
+         * Este método define la lógica que se ejecuta cuando un jugador 
+         * decide visitar este planeta. Actualmente, no se ha implementado 
+         * ninguna lógica específica, y siempre retorna true, 
+         * indicando que la visita se ha realizado con éxito.
+         *
+         * @param jugador El objeto Jugador que está intentando visitar el planeta.
+         * @return true si la visita se ha realizado con éxito, 
+         *         false si hay condiciones que impiden la visita (no implementado).
+         */
         // Implementación por definir
         return true;
     }
 
     @Override
     public int extraerRecursos(int tipo) {
+        /**
+         * Extrae recursos del planeta basado en el tipo especificado.
+         *
+         * Este método verifica el tipo de recurso solicitado por el jugador
+         * y, si es del tipo correcto (en este caso, Platino), ejecuta la lógica 
+         * de extracción de recursos. Si el tipo no es válido, no se realiza
+         * ninguna extracción y se delega la llamada al método de la superclase.
+         *
+         * @param tipo El tipo de recurso a extraer. 
+         *             Debe ser un entero que representa el tipo de recurso.
+         *             En este caso, 4 representa el Platino.
+         * @return La cantidad de recursos extraídos, o 0 si el tipo no es válido.
+         */
         if (tipo == 4) { // Platino
             System.out.println("¡Extrayendo Plantino del planeta volcanico!");
             return super.extraerRecursos(tipo); // Delegamos la lógica de extracción
@@ -59,6 +91,15 @@ public class Volcanico extends Planeta {
 
     @Override
     public boolean salir() {
+        /**
+         * Método que maneja la salida del jugador de este planeta.
+         * 
+         * Este método puede realizar la limpieza de recursos o estados
+         * asociados a la interacción con el planeta. Además, puede proporcionar
+         * una narrativa sobre lo que ocurre al salir.
+         * 
+         * @return true si la salida fue exitosa; false si no se puede salir.
+         */
         // Implementación por definir
         return true;
     }

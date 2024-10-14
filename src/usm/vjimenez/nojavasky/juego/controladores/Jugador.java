@@ -68,6 +68,17 @@ public class Jugador {
     //*************************************************** METODOS ***************************************************//
   
     public void consumirEnergia(float unidadesRecurso, float consumoEnergia) {
+        /**
+         * Consume energía en función de los recursos utilizados y la eficiencia del jugador.
+         * 
+         * Este método calcula la cantidad de energía consumida al realizar una acción que requiere
+         * un consumo de recursos. La energía consumida se basa en la cantidad de unidades de recurso
+         * consumidas y la eficiencia del traje del jugador. La energía restante se actualiza y se asegura
+         * que no caiga por debajo de cero.
+         * 
+         * @param unidadesRecurso La cantidad de recursos que se están utilizando para realizar una acción.
+         * @param consumoEnergia  El porcentaje de energía consumido por cada unidad de recurso.
+         */
         // Calcular las unidades de energía consumidas basadas en la fórmula dada
         float eficiencia = getEficienciaEnergiaProteccion(); // Obtener la eficiencia actual del jugador
         float energiaConsumida = 0.5f * unidadesRecurso * (consumoEnergia / 100) * (1 - eficiencia);
@@ -86,6 +97,16 @@ public class Jugador {
     
     
     public void recargarEnergiaProteccion(float sodio) {
+        /**
+         * Recarga la energía de protección del exotraje utilizando flores de sodio.
+         * 
+         * Este método calcula la cantidad de energía recargada en función de la cantidad
+         * de flores de sodio proporcionadas y la eficiencia actual del jugador. La energía 
+         * recargada se suma a las unidades de energía de protección, asegurándose de que
+         * no exceda la capacidad total del exotraje.
+         * 
+         * @param sodio La cantidad de flores de sodio utilizadas para recargar energía.
+         */
         // Calcular las unidades de energía recargadas basadas en las flores de sodio y la eficiencia de la protección
         float unidadesRecargadas = (float) (0.65 * sodio * (1 + eficienciaEnergiaProteccion));
         
@@ -102,14 +123,29 @@ public class Jugador {
     }
 
 
-     // Método para mejorar la capacidad de energía del traje
-     public void mejorarCapacidad() {
+    // Método para mejorar la capacidad de energía del traje
+    public void mejorarCapacidad() {
+        /**
+         * Mejora la capacidad de energía del exotraje.
+         * 
+         * Este método incrementa la capacidad total de energía de protección
+         * del exotraje en un 10%. Después de la mejora, se muestra la nueva
+         * capacidad total en la consola.
+         */
         // Aumenta la capacidad total en un 10% (por ejemplo)
         this.capcidadTotalEnergiaProteccion *= 1.10;
         System.out.println("Capacidad total de energía de protección mejorada a: " + this.capcidadTotalEnergiaProteccion);
     }
 
     public void mejorarEficiencia() {
+        /**
+         * Mejora la eficiencia energética del exotraje.
+         * 
+         * Este método incrementa la eficiencia energética del exotraje 
+         * mediante un valor aleatorio que varía entre 0.5 y 10.0. 
+         * La eficiencia se limita a un máximo del 100%. Después de la 
+         * mejora, se muestra un mensaje en función del incremento obtenido.
+         */
    
         float a = (float) 0.5;
         float b = (float) 10.0;

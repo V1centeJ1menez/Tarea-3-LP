@@ -298,3 +298,23 @@ Aliens Oceanico
                 *                         |                                       '*
                        *                  !                   .:              
                      *                    *             *               .*
+
+
+
+
+Formato
+/**
+ * Calcula el área de un rectángulo a partir de su base y altura.
+ *
+ * @param base La longitud de la base del rectángulo.
+ * @param altura La altura del rectángulo.
+ * @return El área calculada del rectángulo.
+ * @throws IllegalArgumentException Si la base o la altura es menor o igual a cero.
+ */
+
+
+  //*************************************************** ATRIBUTOS ***************************************************//
+  //*************************************************** CONSTRUCTOR ***************************************************//
+  //*************************************************** GETTERS ***************************************************//
+  //*************************************************** SETTERS ***************************************************//
+  //*************************************************** METODOS ***************************************************//

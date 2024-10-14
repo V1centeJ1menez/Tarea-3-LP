@@ -5,14 +5,34 @@ import usm.vjimenez.nojavasky.hud.GameStateManager;
 import usm.vjimenez.nojavasky.juego.controladores.Jugador;
 import usm.vjimenez.nojavasky.juego.controladores.Nave;
 import usm.vjimenez.nojavasky.juego.controladores.MapaGalactico;
+import java.util.Scanner;
 
 public class EstadoCentroGalactico extends GameState {
 
+    //*************************************************** CONSTRUCTOR ***************************************************//
     public EstadoCentroGalactico(GameStateManager gsm, Jugador jugador, Nave nave, MapaGalactico mapa) {
         super(gsm, jugador, nave, mapa);
     }
+    Nave nave = this.getNave();
+    GameStateManager gsm = this.getGsm();
+    Jugador jugador = this.getJugador();
+    MapaGalactico mapa = this.getMapa();
+    Scanner scanner = this.getScanner();
 
+     //*************************************************** METODOS ***************************************************//
     @Override
+    /**
+     * Muestra las opciones disponibles para el jugador según la eficiencia del propulsor de la nave.
+     * Si la eficiencia es menor al 50%, muestra un mensaje sobre la imposibilidad de alcanzar el centro de la galaxia.
+     * Si la eficiencia es igual o mayor al 50%, describe la experiencia de alcanzar el centro de la galaxia y
+     * presenta opciones de acción al jugador.
+     * 
+     * Parámetros:
+     *   - No recibe parámetros.
+     * 
+     * Devuelve:
+     *   - No devuelve ningún valor.
+     */
     public void mostrarOpciones() {
 
         if(nave.getEficienciaPropulsor() < 50){
@@ -42,82 +62,82 @@ public class EstadoCentroGalactico extends GameState {
 
         }else{
 
-        System.out.println("                   '                                .                *                 ");
-        System.out.println("            *          .                  .                      .           ' .                        ");
-        System.out.println("                   *       '              .                      ;           ");
-        System.out.println("              *                *          :                  - --+- -        ");
-        System.out.println("                                          !           .          !                   .");
-        System.out.println("         .                      .         |        .             .         *  ");
-        System.out.println("                                          |_         +");
-        System.out.println("  .                 *     .            ,  | `.                                     .");
-        System.out.println("                                 --- --+-<#>-+- ---  --  -            '      *   ");
-        System.out.println("   *   '*      .                       `._|_,'                            .");
-        System.out.println("           *                              T                                           *");
-        System.out.println("                *                         |                                       '*");
-        System.out.println("                       *                  !                   .:              ");
-        System.out.println("                     *                    *             *               .*");
+            System.out.println("                   '                                .                *                 ");
+            System.out.println("            *          .                  .                      .           ' .                        ");
+            System.out.println("                   *       '              .                      ;           ");
+            System.out.println("              *                *          :                  - --+- -        ");
+            System.out.println("                                          !           .          !                   .");
+            System.out.println("         .                      .         |        .             .         *  ");
+            System.out.println("                                          |_         +");
+            System.out.println("  .                 *     .            ,  | `.                                     .");
+            System.out.println("                                 --- --+-<#>-+- ---  --  -            '      *   ");
+            System.out.println("   *   '*      .                       `._|_,'                            .");
+            System.out.println("           *                              T                                           *");
+            System.out.println("                *                         |                                       '*");
+            System.out.println("                       *                  !                   .:              ");
+            System.out.println("                     *                    *             *               .*");
 
-        System.out.println("**********************************************************");
-        System.out.println("*                                                        *");
-        System.out.println("*   Has logrado lo que pocos han conseguido: alcanzar el  *");
-        System.out.println("*   centro de la galaxia. Un lugar donde las leyes de la  *");
-        System.out.println("*   física parecen retorcerse. Aquí, el espacio y el tiempo*");
-        System.out.println("*   colapsan en un solo punto, y todo lo que sabías parece*");
-        System.out.println("*   perder sentido.                                       *");
-        System.out.println("*                                                        *");
-        System.out.println("*   Tu nave comienza a vibrar, no por fallos mecánicos,   *");
-        System.out.println("*   sino por la inmensa energía que irradia del núcleo.   *");
-        System.out.println("*   Las pantallas se llenan de lecturas incomprensibles,  *");
-        System.out.println("*   y una extraña sensación de ingravidez te invade.      *");
-        System.out.println("*                                                        *");
-        System.out.println("*   Frente a ti, una brillante esfera de luz aparece,     *");
-        System.out.println("*   pulsando como el latido de un corazón cósmico. Este es*");
-        System.out.println("*   el origen, el núcleo de toda creación galáctica. Sin  *");
-        System.out.println("*   palabras, entiendes que lo que ves es la esencia misma*");
-        System.out.println("*   del universo.                                         *");
-        System.out.println("*                                                        *");
-        System.out.println("*   Una profunda calma te envuelve mientras observas el   *");
-        System.out.println("*   espectáculo cósmico. Te das cuenta de que la clave    *");
-        System.out.println("*   para comprender la galaxia no está en conquistarla,   *");
-        System.out.println("*   sino en respetarla.                                   *");
-        System.out.println("*                                                        *");
-        System.out.println("*   Aquí, en el corazón de las estrellas, todo parece     *");
-        System.out.println("*   posible, pero también frágil. ¿Qué harás ahora?       *");
-        System.out.println("*                                                        *");
-        System.out.println("**********************************************************");
+            System.out.println("**********************************************************");
+            System.out.println("*                                                        *");
+            System.out.println("*   Has logrado lo que pocos han conseguido: alcanzar el  *");
+            System.out.println("*   centro de la galaxia. Un lugar donde las leyes de la  *");
+            System.out.println("*   física parecen retorcerse. Aquí, el espacio y el tiempo*");
+            System.out.println("*   colapsan en un solo punto, y todo lo que sabías parece*");
+            System.out.println("*   perder sentido.                                       *");
+            System.out.println("*                                                        *");
+            System.out.println("*   Tu nave comienza a vibrar, no por fallos mecánicos,   *");
+            System.out.println("*   sino por la inmensa energía que irradia del núcleo.   *");
+            System.out.println("*   Las pantallas se llenan de lecturas incomprensibles,  *");
+            System.out.println("*   y una extraña sensación de ingravidez te invade.      *");
+            System.out.println("*                                                        *");
+            System.out.println("*   Frente a ti, una brillante esfera de luz aparece,     *");
+            System.out.println("*   pulsando como el latido de un corazón cósmico. Este es*");
+            System.out.println("*   el origen, el núcleo de toda creación galáctica. Sin  *");
+            System.out.println("*   palabras, entiendes que lo que ves es la esencia misma*");
+            System.out.println("*   del universo.                                         *");
+            System.out.println("*                                                        *");
+            System.out.println("*   Una profunda calma te envuelve mientras observas el   *");
+            System.out.println("*   espectáculo cósmico. Te das cuenta de que la clave    *");
+            System.out.println("*   para comprender la galaxia no está en conquistarla,   *");
+            System.out.println("*   sino en respetarla.                                   *");
+            System.out.println("*                                                        *");
+            System.out.println("*   Aquí, en el corazón de las estrellas, todo parece     *");
+            System.out.println("*   posible, pero también frágil. ¿Qué harás ahora?       *");
+            System.out.println("*                                                        *");
+            System.out.println("**********************************************************");
 
-        
-        System.out.println("");
-        System.out.println("[1] Continuar explorando");
-        System.out.println("[2] Reiniciar juego");
-        System.out.println("[3] Salir del juego");
-
-            // Lee la entrada del usuario para realizar una acción
-        int opcion = scanner.nextInt();
-        switch(opcion) {
-            case 1:
-                cambiarEstado(new EstadoOrbita(gsm, jugador, nave, mapa));
-                break;
-            case 2:
             
-                // Reiniciar las instancias
-                GameStateManager nuevoGsm = new GameStateManager(); // Crea una nueva instancia del GameStateManager
-                Jugador nuevoJugador = new Jugador();               // Crea un nuevo jugador
-                Nave nuevaNave = new Nave();                        // Crea una nueva nave
-                MapaGalactico nuevoMapa = new MapaGalactico();      // Crea un nuevo mapa galáctico
-            
-                // Cambia el estado actual al menú principal con las nuevas instancias
-                cambiarEstado(new EstadoMainMenu(nuevoGsm, nuevoJugador, nuevaNave, nuevoMapa));
-            case 3:
-                // Cerrar el programa
-                System.out.println("Saliendo del juego...");
-                cerrarScanner();  // Cerrar el Scanner antes de salir
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Opción no válida. Inténtalo de nuevo.");
+            System.out.println("");
+            System.out.println("[1] Continuar explorando");
+            System.out.println("[2] Reiniciar juego");
+            System.out.println("[3] Salir del juego");
+
+                // Lee la entrada del usuario para realizar una acción
+            int opcion = scanner.nextInt();
+            switch(opcion) {
+                case 1:
+                    cambiarEstado(new EstadoOrbita(gsm, jugador, nave, mapa));
+                    break;
+                case 2:
+                
+                    // Reiniciar las instancias
+                    GameStateManager nuevoGsm = new GameStateManager(); // Crea una nueva instancia del GameStateManager
+                    Jugador nuevoJugador = new Jugador();               // Crea un nuevo jugador
+                    Nave nuevaNave = new Nave();                        // Crea una nueva nave
+                    MapaGalactico nuevoMapa = new MapaGalactico();      // Crea un nuevo mapa galáctico
+                
+                    // Cambia el estado actual al menú principal con las nuevas instancias
+                    cambiarEstado(new EstadoMainMenu(nuevoGsm, nuevoJugador, nuevaNave, nuevoMapa));
+                case 3:
+                    // Cerrar el programa
+                    System.out.println("Saliendo del juego...");
+                    cerrarScanner();  // Cerrar el Scanner antes de salir
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Opción no válida. Inténtalo de nuevo.");
+                }
         }
-    }
     }
 }
 

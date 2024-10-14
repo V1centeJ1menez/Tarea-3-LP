@@ -3,13 +3,16 @@ package usm.vjimenez.nojavasky.juego.entidades;
 import java.util.Random;
 
 public class Alienigena {
+
+
+    //*************************************************** ATRIBUTOS ***************************************************//
     private String nombre;
     private String especie;
     private String mensaje;
     private String arteASCII;
     private String oferta;  // Nueva propiedad para almacenar las ofertas de este alienígena
 
-    // Constructor
+    //*************************************************** CONSTRUCTOR ***************************************************//
     public Alienigena(String nombre, String especie, String mensaje, String arteASCII, String oferta) {
         this.nombre = nombre;
         this.especie = especie;
@@ -18,7 +21,7 @@ public class Alienigena {
         this.oferta = oferta;
     }
 
-    // Getters
+    //*************************************************** GETTERS ***************************************************//
     public String getNombre() {
         return nombre;
     }
@@ -39,6 +42,7 @@ public class Alienigena {
         return oferta;
     }
 
+    //*************************************************** SETTERS ***************************************************//
     public void setArteASCII(String arteASCII) {
         this.arteASCII = arteASCII;
     }
@@ -56,8 +60,21 @@ public class Alienigena {
     }
     
 
-    // Método para generar un alienígena aleatorio con sus atributos
+    //*************************************************** METODOS ***************************************************//
     public Alienigena generarAlienigena() {
+
+        /**
+         * Método que genera un alienígena con características aleatorias.
+         * 
+         * Este método determina el tipo de alienígena que se generará en función de 
+         * la especie seleccionada (Glaciarido o Aqualuxian). Para cada tipo de 
+         * alienígena, se elige un nombre y un mensaje aleatorio de una lista predefinida,
+         * así como un arte ASCII que representa al alienígena. Además, se selecciona 
+         * una oferta aleatoria que el alienígena puede hacer al jugador.
+         *
+         * @return Un objeto Alienigena que contiene un nombre, especie, mensaje, arte 
+         *         ASCII y una oferta aleatoria.
+         */
         String arteAsignado;
         String mensajeAleatorio;
         String nombreAleatorio;

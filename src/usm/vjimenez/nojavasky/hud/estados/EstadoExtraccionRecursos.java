@@ -8,18 +8,41 @@ import usm.vjimenez.nojavasky.juego.entidades.planetas.tieneAsentamientos;
 import usm.vjimenez.nojavasky.juego.controladores.MapaGalactico;
 import usm.vjimenez.nojavasky.juego.entidades.planetas.tipos.*;
 import usm.vjimenez.nojavasky.juego.inventario.*;
+import java.util.Scanner;
 
 public class EstadoExtraccionRecursos extends GameState {
 
+    //*************************************************** ATRIBUTOS ***************************************************//
     private Planeta planetaActual;
     
+    //*************************************************** CONSTRUCTOR ***************************************************//
     public EstadoExtraccionRecursos(GameStateManager gsm, Jugador jugador, Nave nave, MapaGalactico mapa) {
         super(gsm, jugador, nave, mapa);
         this.planetaActual = mapa.getPlanetaActual();
+        
     }
 
+    Nave nave = this.getNave();
+    GameStateManager gsm = this.getGsm();
+    Jugador jugador = this.getJugador();
+    MapaGalactico mapa = this.getMapa();
+    Scanner scanner = this.getScanner();
+
+    //*************************************************** METODOS ***************************************************//
     @Override
     public void mostrarOpciones() {
+        /**
+     * Muestra las opciones de extracción de recursos disponibles en el planeta actual.
+     * Este método se ejecuta en un bucle hasta que el jugador decide salir del menú o
+     * se desploma por falta de energía de protección.
+     *
+     * Parámetros:
+     *   - No recibe parámetros.
+     *
+     * Devuelve:
+     *   - No devuelve ningún valor.
+     */
+        
         boolean enMenuExtraccion = true;
         while (enMenuExtraccion) {
             limpiarPantalla();
@@ -201,6 +224,16 @@ public class EstadoExtraccionRecursos extends GameState {
     }
 
     public static void mostrarDescenso() {
+    /**
+    * Muestra un arte ASCII que representa un descenso visual en la consola.
+    * Este arte puede ser utilizado para ilustrar una escena o evento en el juego.
+    *
+    * Parámetros:
+    *   - No recibe parámetros.
+    *
+    * Devuelve:
+    *   - No devuelve ningún valor.
+    */
         String arte = 
             "*                                            ✧₊                                        ₊                 \n" +
             "                    ooooo \n" +
@@ -227,56 +260,70 @@ public class EstadoExtraccionRecursos extends GameState {
     }
 
     private void mostrarInterface() {
-    Planeta planetaActual = mapa.getPlanetaActual();
-    System.out.println("==========================================================================================================================");
-    System.out.println("|                                             Información del Planeta Actual                                             |");
-    System.out.println("==========================================================================================================================");
-    System.out.println("|------------------------------------------------------------------------------------------------------------------------|");
 
-    if(planetaActual instanceof CentroGalactico){ System.out.println("Estas en Centro Galactico, osea ganasteee.. Aqui cerrar juego.");} 
-    else {
+        /**
+         * Muestra la interfaz del juego con la información del planeta actual y del jugador.
+         * Se obtiene el planeta actual del mapa y se imprime su información junto con
+         * los recursos disponibles y los atributos del jugador.
+         *
+         * Parámetros:
+         *   - No recibe parámetros.
+         *
+         * Devuelve:
+         *   - No devuelve ningún valor.
+        */
 
-        System.out.println("Tipo de planeta: " + planetaActual.getTipo()); // Suponiendo que tienes un método para obtener el tipo de planeta
-        System.out.println("Posición del planeta: " + mapa.getPosicionActual()); // Método que obtiene la posición
-        System.out.println("Radio del planeta: " + planetaActual.getRadio() + " metros"); // Suponiendo que tienes un método para obtener el radio
-        
-        // Mostrar los recursos
-        System.out.println("Recursos disponibles:");
-        System.out.println("Cristales de Hidrógeno: " + planetaActual.getCristalesHidrogeno() + " unidades");
-        System.out.println("Flores de Sodio: " + planetaActual.getFloresDeSodio() + " unidades");
-
-        if (planetaActual instanceof Radioactivo) {
-            Radioactivo radioactivo = (Radioactivo) planetaActual;
-            System.out.println("Uranio: " + radioactivo.getUranio() + " unidades");
-            System.out.println("Radiación: " + radioactivo.getRadiacion() + " Rad");
-        } else if (planetaActual instanceof Volcanico) {
-            Volcanico volcanico = (Volcanico) planetaActual;
-            System.out.println("Platino: " + volcanico.getPlatino() + " unidades");
-            System.out.println("Temperatura: " + volcanico.getTemperatura()+ " ºC");
-        } else if (planetaActual instanceof Oceanico) {
-            Oceanico oceanico = (Oceanico) planetaActual;
-            System.out.println("Profundidad: " + oceanico.getProfundidad()+ " metros");
-        } else if (planetaActual instanceof Helado) {
-            Helado helado = (Helado) planetaActual;
-            System.out.println("Temperatura: " + helado.getTemperatura() + " ºC");
-        }   
-
-        if (planetaActual instanceof tieneAsentamientos) {
-            System.out.println("Este planeta tiene asentamientos.");
-        } else {
-            System.out.println("Este planeta no tiene asentamientos.");
-        }
-        
-        // Información del jugador
-        System.out.println("|------------------------------------------------------------------------------------------------------------------------|");
-        System.out.println("Energía del traje: " + jugador.getUnidadesEnergiaProteccion() + " unidades de energia de proteccion");
-        System.out.println("Eficiencia del traje: " + jugador.getEficienciaEnergiaProteccion() + " %");
-        System.out.println("|------------------------------------------------------------------------------------------------------------------------|");
-        System.out.println("Combustible: " + nave.getUnidadesCombustible() + " unidades de combustible");
-        System.out.println("Eficiencia de la nave: " + nave.getEficienciaPropulsor()+ " %");
-        System.out.println("|------------------------------------------------------------------------------------------------------------------------|");
+        Planeta planetaActual = mapa.getPlanetaActual();
         System.out.println("==========================================================================================================================");
-    
+        System.out.println("|                                             Información del Planeta Actual                                             |");
+        System.out.println("==========================================================================================================================");
+        System.out.println("|------------------------------------------------------------------------------------------------------------------------|");
+
+        if(planetaActual instanceof CentroGalactico){ 
+            System.out.println("Estas en Centro Galactico, osea ganasteee.. Aqui cerrar juego.");
+        } else {
+
+                System.out.println("Tipo de planeta: " + planetaActual.getTipo()); // Suponiendo que tienes un método para obtener el tipo de planeta
+                System.out.println("Posición del planeta: " + mapa.getPosicionActual()); // Método que obtiene la posición
+                System.out.println("Radio del planeta: " + planetaActual.getRadio() + " metros"); // Suponiendo que tienes un método para obtener el radio
+                
+                // Mostrar los recursos
+                System.out.println("Recursos disponibles:");
+                System.out.println("Cristales de Hidrógeno: " + planetaActual.getCristalesHidrogeno() + " unidades");
+                System.out.println("Flores de Sodio: " + planetaActual.getFloresDeSodio() + " unidades");
+
+                if (planetaActual instanceof Radioactivo) {
+                    Radioactivo radioactivo = (Radioactivo) planetaActual;
+                    System.out.println("Uranio: " + radioactivo.getUranio() + " unidades");
+                    System.out.println("Radiación: " + radioactivo.getRadiacion() + " Rad");
+                } else if (planetaActual instanceof Volcanico) {
+                    Volcanico volcanico = (Volcanico) planetaActual;
+                    System.out.println("Platino: " + volcanico.getPlatino() + " unidades");
+                    System.out.println("Temperatura: " + volcanico.getTemperatura()+ " ºC");
+                } else if (planetaActual instanceof Oceanico) {
+                    Oceanico oceanico = (Oceanico) planetaActual;
+                    System.out.println("Profundidad: " + oceanico.getProfundidad()+ " metros");
+                } else if (planetaActual instanceof Helado) {
+                    Helado helado = (Helado) planetaActual;
+                    System.out.println("Temperatura: " + helado.getTemperatura() + " ºC");
+                }   
+
+                if (planetaActual instanceof tieneAsentamientos) {
+                    System.out.println("Este planeta tiene asentamientos.");
+                } else {
+                    System.out.println("Este planeta no tiene asentamientos.");
+                }
+                
+                // Información del jugador
+                System.out.println("|------------------------------------------------------------------------------------------------------------------------|");
+                System.out.println("Energía del traje: " + jugador.getUnidadesEnergiaProteccion() + " unidades de energia de proteccion");
+                System.out.println("Eficiencia del traje: " + jugador.getEficienciaEnergiaProteccion() + " %");
+                System.out.println("|------------------------------------------------------------------------------------------------------------------------|");
+                System.out.println("Combustible: " + nave.getUnidadesCombustible() + " unidades de combustible");
+                System.out.println("Eficiencia de la nave: " + nave.getEficienciaPropulsor()+ " %");
+                System.out.println("|------------------------------------------------------------------------------------------------------------------------|");
+                System.out.println("==========================================================================================================================");
+            
         }
     }
 
@@ -284,6 +331,17 @@ public class EstadoExtraccionRecursos extends GameState {
     
 
     private void mostrarCabeceraDesplomado(){
+        /**
+         * Muestra una cabecera decorativa en forma de arte ASCII en la consola.
+         * Este arte puede ser utilizado como parte de la interfaz de usuario
+         * para hacerla más atractiva visualmente.
+         *
+         * Parámetros:
+         *   - No recibe parámetros.
+         *
+         * Devuelve:
+         *   - No devuelve ningún valor.
+         */
         System.out.println("                                  	     ████████████                                                ");
         System.out.println("                                      ██████████████████                                              ");
         System.out.println("                                   ████████████████████████                                           ");
@@ -320,6 +378,4 @@ public class EstadoExtraccionRecursos extends GameState {
         System.out.println("                ████████████          ███ ██        ██ ███          ███████████                   ");
         System.out.println("                ████████████████████  ███ ████████████ ███  ███████████████████                   ");
     }
-    
-
 }

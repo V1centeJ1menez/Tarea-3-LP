@@ -24,6 +24,7 @@ public abstract class Planeta {
     // Scanner global
     private Scanner scanner = new Scanner(System.in);
 
+    //*************************************************** CONSTRUCTOR ***************************************************//
     public Planeta(int radio, int cristalesHidrogeno, int floresDeSodio, int uranio, int platino, float consumoEnergia) {
         this.radio = radio;
         this.cristalesHidrogeno = cristalesHidrogeno;
@@ -101,6 +102,17 @@ public abstract class Planeta {
     //*************************************************** METODOS ***************************************************//
     // Método que se llama cuando el jugador visita el planeta
     public boolean visitar(Jugador jugador) {
+        /**
+         * Método que permite al jugador visitar el planeta.
+         * 
+         * Este método verifica si el jugador tiene suficiente energía
+         * de protección y si la nave tiene combustible suficiente para 
+         * realizar la visita. Si alguna de las condiciones no se cumple, 
+         * la visita no se puede realizar.
+         *
+         * @param jugador El jugador que intenta visitar el planeta.
+         * @return true si la visita es exitosa; false si no se puede visitar.
+         */
         // Aqui hay que implemetar una logica con el combustible de la nave y la energia del exotraje
         // por ejemplo
         if (jugador.getUnidadesEnergiaProteccion() == 0) {
@@ -109,8 +121,25 @@ public abstract class Planeta {
         return true;
     }
 
-     // Método general para extraer recursos
-     public int extraerRecursos(int tipo) {
+    // Método general para extraer recursos
+    public int extraerRecursos(int tipo) {
+        /**
+         * Método general para extraer recursos del planeta.
+         * 
+         * Este método determina el tipo de recurso que el jugador desea extraer,
+         * verifica si hay suficientes unidades disponibles y solicita la cantidad
+         * que se desea extraer. Si la extracción es exitosa, se actualizan las
+         * unidades del recurso en la superclase.
+         *
+         * @param tipo El tipo de recurso que se desea extraer:
+         *             1 - Cristales de Hidrógeno
+         *             2 - Flores de Sodio
+         *             3 - Uranio
+         *             4 - Platino
+         * @return La cantidad de recursos extraídos, o -1 si no se pudo
+         *         realizar la extracción por un tipo de recurso no válido,
+         *         falta de unidades, o cantidad no válida.
+         */
         String nombreRecurso = "";
         int unidadesRecurso = 0;
 
@@ -163,8 +192,20 @@ public abstract class Planeta {
         System.out.println("Has extraído " + cantidadSolicitada + " unidades de " + nombreRecurso + ".");
         return cantidadSolicitada;
     }
+
     // Método para salir del planeta
     public boolean salir() {
+        /**
+         * Método para salir del planeta.
+         * 
+         * Este método permite que el jugador abandone el planeta actual.
+         * Se debe implementar una lógica para verificar si la nave tiene
+         * suficiente combustible y si el exotraje tiene suficiente energía
+         * para realizar la salida. Si alguna de las condiciones no se cumple,
+         * la salida no podrá realizarse.
+         *
+         * @return true si la salida es exitosa; false si no se puede salir.
+         */
         // Aqui hay que implemetar una logica con el combustible de la nave y la energia del exotraje
         return true;
     }

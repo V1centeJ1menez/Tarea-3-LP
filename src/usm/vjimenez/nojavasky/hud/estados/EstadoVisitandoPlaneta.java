@@ -6,17 +6,43 @@ import usm.vjimenez.nojavasky.juego.controladores.Nave;
 import usm.vjimenez.nojavasky.juego.entidades.planetas.*;
 import usm.vjimenez.nojavasky.juego.entidades.planetas.tipos.*;
 import usm.vjimenez.nojavasky.juego.controladores.MapaGalactico;
+import java.util.Scanner;
 
 public class EstadoVisitandoPlaneta extends GameState {
 
+    //*************************************************** ATRIBUTOS ***************************************************//
     private boolean primeraVez;
+
+    //*************************************************** CONSTRUCTOR ***************************************************//
     public EstadoVisitandoPlaneta(GameStateManager gsm, Jugador jugador, Nave nave, MapaGalactico mapa, boolean primeraVez) {
         super(gsm, jugador, nave, mapa); // Llama al constructor de GameState
         this.primeraVez = primeraVez;
     }
 
+    Nave nave = this.getNave();
+    GameStateManager gsm = this.getGsm();
+    Jugador jugador = this.getJugador();
+    MapaGalactico mapa = this.getMapa();
+    Scanner scanner = this.getScanner();
+
+
+    //*************************************************** METODOS ***************************************************//
+   
     @Override
     public void mostrarOpciones() {
+        /**
+         * Muestra las opciones disponibles para el jugador al visitar un planeta.
+         * Este método permite al jugador realizar diferentes acciones, como visitar asentamientos,
+         * extraer recursos, ver su inventario o volver a la órbita. 
+         * Además, gestiona la lógica de interacción del menú y cambia el estado del juego según las opciones seleccionadas.
+         *
+         * La lógica de cada opción se ejecuta en función de la elección del jugador, 
+         * y algunas acciones pueden depender de las características del planeta actual.
+         * Si el jugador intenta visitar asentamientos, se verifica que el planeta actual los tenga disponibles.
+         * 
+         * Devuelve:
+         *   - No devuelve ningún valor.
+         */
         boolean enMenuVisita = true;
         if (primeraVez) {
             simularEncendidoMonitor();
@@ -90,6 +116,18 @@ public class EstadoVisitandoPlaneta extends GameState {
 
 
     private void animarCaminoAsentamientos() {
+        /**
+         * Anima el recorrido hacia los asentamientos del planeta.
+         * Este método muestra una serie de mensajes que simulan la caminata del jugador
+         * hacia las estructuras de asentamiento en el planeta. 
+         * Los mensajes se muestran uno por uno con una pausa entre ellos para dar un efecto de animación.
+         * 
+         * Después de mostrar todos los mensajes, se invoca el método mostrarDescenso()
+         * para actualizar la visualización del descenso en el planeta.
+         *
+         * Devuelve:
+         *   - No devuelve ningún valor.
+         */
         String[] mensajes = {
             "Observas unas estructuras a lo lejos..",
             "Que curiosidad...",
@@ -105,6 +143,19 @@ public class EstadoVisitandoPlaneta extends GameState {
     }
 
     private void animarSalidaDelPlaneta() {
+        /**
+         * Anima la salida del planeta y el regreso a órbita.
+         * Este método muestra una serie de mensajes que simulan el proceso de
+         * empacar suministros y encender los motores de la nave durante el despegue.
+         * 
+         * Los mensajes se presentan uno a uno con una pausa entre ellos para crear un efecto de animación.
+         * 
+         * Después de mostrar todos los mensajes, se invoca el método mostrarDescenso()
+         * para actualizar la visualización del descenso en el planeta.
+         *
+         * Devuelve:
+         *   - No devuelve ningún valor.
+         */
         String[] mensajes = {
             "Empacando suministros...",
             "Encendiendo motores de la nave...",
@@ -120,6 +171,21 @@ public class EstadoVisitandoPlaneta extends GameState {
     }
     
     private void animarEntradaAlPlaneta() {
+        /**
+         * Anima la entrada al planeta antes de iniciar la exploración.
+         * Este método muestra una serie de mensajes que simulan el proceso de 
+         * descenso hacia el planeta, incluyendo la preparación del exotraje 
+         * y el análisis de datos necesarios para la exploración.
+         *
+         * Los mensajes se presentan uno a uno con una pausa entre ellos para crear 
+         * un efecto de animación, mejorando la inmersión del jugador.
+         *
+         * Después de mostrar todos los mensajes, se invoca el método mostrarDescenso()
+         * para actualizar la visualización del descenso en el planeta.
+         *
+         * Devuelve:
+         *   - No devuelve ningún valor.
+         */
         String[] mensajes = {
             "Bajando al planeta...",
             "Analizando datos...",
@@ -135,6 +201,22 @@ public class EstadoVisitandoPlaneta extends GameState {
     }
 
     private void simularEncendidoMonitor() {
+        /**
+         * Simula el encendido del monitor de la nave.
+         * Este método presenta una serie de mensajes que simulan la 
+         * secuencia de encendido de un monitor, utilizando caracteres 
+         * que representan el proceso de inicialización.
+         *
+         * La pantalla se limpia antes de mostrar cada mensaje para 
+         * mejorar el efecto visual, creando una experiencia más 
+         * inmersiva para el jugador.
+         *
+         * Después de mostrar todos los mensajes, se limpia la pantalla 
+         * nuevamente para preparar la siguiente visualización.
+         *
+         * Devuelve:
+         *   - No devuelve ningún valor.
+         */
         String[] encendido = {
             " . . .",
             " . . █",
@@ -154,6 +236,18 @@ public class EstadoVisitandoPlaneta extends GameState {
     }
 
     public static void mostrarDescenso() {
+        /**
+         * Muestra el arte ASCII que representa el descenso de la nave 
+         * hacia un planeta. Este método imprime en la consola un diseño 
+         * visual que simula la entrada de la nave a la atmósfera de un 
+         * planeta, creando una experiencia inmersiva para el jugador.
+         *
+         * El arte incluye diferentes elementos visuales que representan 
+         * la nave, el espacio y el entorno planetario.
+         *
+         * Devuelve:
+         *   - No devuelve ningún valor.
+         */
         String arte = 
             "*                                            ✧₊                                        ₊                 \n" +
             "                    ooooo \n" +
@@ -180,6 +274,18 @@ public class EstadoVisitandoPlaneta extends GameState {
     }
 
     public void mostrarInterface() {
+        /**
+         * Muestra la información del planeta actual y del jugador en la interfaz del juego.
+         * Este método imprime en la consola detalles como el tipo de planeta, su posición,
+         * recursos disponibles y la energía y eficiencia del traje del jugador, así como 
+         * la información de la nave.
+         *
+         * Incluye información específica dependiendo del tipo de planeta actual (radioactivo,
+         * volcánico, oceánico o helado) y muestra si el planeta tiene asentamientos.
+         *
+         * Devuelve:
+         *   - No devuelve ningún valor.
+         */
         Planeta planetaActual = mapa.getPlanetaActual();
         System.out.println("==========================================================================================================================");
         System.out.println("|                                             Información del Planeta Actual                                             |");
@@ -229,11 +335,19 @@ public class EstadoVisitandoPlaneta extends GameState {
         System.out.println("|------------------------------------------------------------------------------------------------------------------------|");
         System.out.println("==========================================================================================================================");
     
-        }
+    }
         
 
     // Método para mostrar el inventario del jugador
     private void mostrarInventario() {
+        /**
+         * Muestra el inventario del jugador en la interfaz del juego.
+         * Este método llama al método `mostrarInventario` del objeto `Inventario`
+         * del jugador, pasando el jugador y la nave como parámetros.
+         *
+         * Devuelve:
+         *   - No devuelve ningún valor.
+         */
         jugador.getInventario().mostrarInventario(jugador, nave);
     }
 }
