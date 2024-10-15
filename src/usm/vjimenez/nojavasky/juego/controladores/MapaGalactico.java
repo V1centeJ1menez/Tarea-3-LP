@@ -144,8 +144,6 @@ public class MapaGalactico {
             centroGalacticoGenerado = true; // Asegurarse de que solo se genere una vez
         }
 
-        nuevoPlaneta = crearCentroGalactico();
-        centroGalacticoGenerado = true;
         // Si el nuevo planeta es válido, agregarlo a la lista
         if (nuevoPlaneta != null) {
             planetas.set(this.posicionActual,nuevoPlaneta);
